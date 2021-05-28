@@ -1,0 +1,25 @@
+{
+	"name": "anxietynoter",
+	"version": "1.0.0",
+	"description": "A simple tool for taking note of your anxiety.",
+	"private": true,
+	"main": "main.js",
+	"scripts": {
+		"start": "tsc && node buildaction.mjs && electron out/main.js",
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"eslint-config-prettier": "^8.3.0",
+		"prettier": "^2.3.0",
+		"typescript": "^4.3.2"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.25.0",
+		"@typescript-eslint/parser": "^4.25.0",
+		"electron": "^13.0.1",
+		"eslint": "^7.27.0"
+	}
+}

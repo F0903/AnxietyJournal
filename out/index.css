@@ -1,0 +1,80 @@
+:root {
+	--bg-color: hsl(250, 52%, 18%);
+	--primary-color: hsl(250, 77%, 62%);
+	--primary-font: 200 18px "Josefin Sans";
+
+	background-color: var(--bg-color);
+	font: var(--primary-font);
+}
+
+.title {
+	font-size: 3rem;
+	text-align: center;
+	background: hsl(250, 47%, 44%);
+	background: linear-gradient(
+		0deg,
+		hsl(250, 52%, 18%) 5%,
+		hsl(250, 52%, 18%) 15%,
+		hsl(250, 50%, 28%) 35%,
+		var(--primary-color) 100%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+}
+
+.field {
+	font: var(--primary-font);
+	background-color: var(--bg-color);
+	color: var(--primary-color);
+	border: 2px solid var(--primary-color);
+	border-radius: 3px;
+}
+
+.name-box {
+	outline: 0;
+	width: 50%;
+	max-width: fit-content;
+	color: var(--primary-color);
+	font-weight: 500;
+}
+
+.note-box {
+	outline: 0;
+	width: 50%;
+	max-width: fit-content;
+	color: var(--primary-color);
+	font-weight: 500;
+}
+
+.submit-button {
+	display: flex;
+	--button-size: 70px;
+	outline: 0;
+	min-width: var(--button-size);
+	min-height: var(--button-size);
+	max-width: var(--button-size);
+	max-height: var(--button-size);
+	border: 2px solid var(--primary-color);
+	border-radius: 50%;
+	font-size: calc(70px / 2.5);
+}
+
+.submit-button i {
+	align-self: center;
+	justify-self: center;
+	text-align: center;
+	display: block;
+	margin: auto;
+}
+
+.field + .field {
+	margin-top: 50px;
+}
