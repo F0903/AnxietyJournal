@@ -7,6 +7,10 @@
 	font: var(--primary-font);
 }
 
+[onclick] {
+	cursor: pointer;
+}
+
 .title {
 	font-size: 3rem;
 	text-align: center;

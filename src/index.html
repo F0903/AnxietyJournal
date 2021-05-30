@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Anxiety Noter</title>
+		<title>Anxiety Journal</title>
 		<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 		<script
 			src="https://kit.fontawesome.com/cfa5b36771.js"
@@ -9,24 +9,28 @@
 		></script>
 		<script src="index.js"></script>
 	</head>
-	<body>
-		<h1 class="title">Anxiety Noter</h1>
+	<body onload="OnLoad()">
+		<h1 class="title">Anxiety Journal</h1>
 		<div class="fields">
 			<div
+				onfocus="OnBoxFocus(this)"
+				onblur="OnBoxBlur(this)"
 				class="field input-box name-box"
 				role="textbox"
 				contenteditable="true"
 				placeholder="What did you do today?"
-				onclick="OnBoxClick()"
 			></div>
 			<div
+				onfocus="OnBoxFocus(this)"
+				onblur="OnBoxBlur(this)"
 				class="field input-box note-box"
 				role="textbox"
 				contenteditable="true"
 				placeholder="Is there anything else you'd like to add? :)"
-				onclick="OnBoxClick()"
 			></div>
-			<div class="field submit-button"><i class="fas fa-check"></i></div>
+			<div class="field submit-button" onclick="OnSubmitClick()">
+				<i class="fas fa-check"></i>
+			</div>
 		</div>
 	</body>
 </html>
