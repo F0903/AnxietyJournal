@@ -26,4 +26,28 @@ function OnBodyClick(body: HTMLElement, event: MouseEvent) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function OnSubmitClick() {
 	console.log("submit");
+	const taskBox = document.querySelector("div.task-box") as HTMLElement;
+	const task = taskBox.innerText;
+	const scaleSlider = document.querySelector(
+		"input.anxiety-slider"
+	) as HTMLInputElement;
+	const scale = parseInt(scaleSlider.value);
+	const noteBox = document.querySelector("div.note-box") as HTMLElement;
+	const note =
+		noteBox.innerText != noteBox.getAttribute("placeholder")
+			? noteBox.innerText
+			: undefined;
+	window.api.db_set("journal", {
+		task: task,
+		anxietyScale: scale,
+		optionalNote: note,
+	});
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function OnSliderChange(slider: HTMLInputElement) {
+	const valShower = document.querySelector(
+		"span.anxiety-slider-value"
+	) as HTMLSpanElement;
+	valShower.innerText = slider.value;
 }

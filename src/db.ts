@@ -1,11 +1,31 @@
-import { Db, FilterQuery, MongoClient, Collection } from "mongodb";
+import { Db, FilterQuery, MongoClient, Collection, ObjectId } from "mongodb";
 
-const dbUri = "mongodb://localhost:27017/AxietyJournal";
+const dbUri = "mongodb://localhost:27017/AnxietyJournal";
 
-export interface ServerDocument {
-	readonly _id?: string;
-	name: string;
-	imgUrl: string;
+export interface IJournalDocumentFrame {
+	task: string;
+	anxietyScale: number;
+	optionalNote?: string;
+}
+
+export interface IJournalDocument {
+	readonly _id: ObjectId;
+	task: string;
+	anxietyScale: number;
+	optionalNote?: string;
+}
+
+export class JournalDocument implements IJournalDocument {
+	readonly _id = new ObjectId();
+	task: string;
+	anxietyScale: number;
+	optionalNote?: string;
+
+	constructor(task: string, anxietyScale: number, optionalNote?: string) {
+		this.task = task;
+		this.anxietyScale = anxietyScale;
+		this.optionalNote = optionalNote;
+	}
 }
 
 export default class Database {
@@ -46,9 +66,24 @@ export default class Database {
 		return vals.toArray();
 	}
 
-	async setValue(collectionName: string, doc: ServerDocument): Promise<void> {
+	async setValue(
+		collectionName: string,
+		doc: IJournalDocumentFrame | IJournalDocument
+	): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
-		await col.updateOne({ name: doc.name }, { $set: doc }, { upsert: true });
+		let actualDoc: IJournalDocument;
+		if (!("_id" in doc)) {
+			actualDoc = new JournalDocument(
+				doc.task,
+				doc.anxietyScale,
+				doc.optionalNote
+			);
+		} else actualDoc = doc;
+		await col.updateOne(
+			{ _id: actualDoc._id },
+			{ $set: doc },
+			{ upsert: true }
+		);
 	}
 
 	async deleteValue<Q>(
