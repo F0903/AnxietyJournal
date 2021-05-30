@@ -12,11 +12,20 @@
 	<body>
 		<h1 class="title">Anxiety Noter</h1>
 		<div class="fields">
-			<input class="field name-box" placeholder="What did you do today?" />
-			<input
-				class="field note-box"
+			<div
+				class="field input-box name-box"
+				role="textbox"
+				contenteditable="true"
+				placeholder="What did you do today?"
+				onclick="OnBoxClick()"
+			></div>
+			<div
+				class="field input-box note-box"
+				role="textbox"
+				contenteditable="true"
 				placeholder="Is there anything else you'd like to add? :)"
-			/>
+				onclick="OnBoxClick()"
+			></div>
 			<div class="field submit-button"><i class="fas fa-check"></i></div>
 		</div>
 	</body>
