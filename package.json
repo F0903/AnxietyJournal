@@ -1,5 +1,5 @@
 {
-	"name": "anxietynoter",
+	"name": "anxietyjournal",
 	"version": "1.0.0",
 	"description": "A simple tool for taking note of your anxiety.",
 	"private": true,
@@ -13,10 +13,12 @@
 	"license": "ISC",
 	"dependencies": {
 		"eslint-config-prettier": "^8.3.0",
+		"mongodb": "^3.6.9",
 		"prettier": "^2.3.0",
 		"typescript": "^4.3.2"
 	},
 	"devDependencies": {
+		"@types/mongodb": "^3.6.17",
 		"@typescript-eslint/eslint-plugin": "^4.25.0",
 		"@typescript-eslint/parser": "^4.25.0",
 		"electron": "^13.0.1",

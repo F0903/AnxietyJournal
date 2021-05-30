@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
+import Database from "./db";
 import path from "path";
 
 let win: BrowserWindow;
@@ -25,4 +26,38 @@ app.on("ready", async () => {
 app.on("window-all-closed", () => {
 	if (process.platform == "darwin") return;
 	app.quit();
+});
+
+ipcMain.handle("db-get", async (ev, args) => {
+	const db = new Database();
+	const colName = args[0];
+	const query = args[1];
+	const val = await db.getValue(colName, query);
+	await db.close();
+	return val;
+});
+
+ipcMain.handle("db-get-all", async (ev, args) => {
+	const db = new Database();
+	const colName = args[0];
+	const query = args[1];
+	const val = await db.getAll(colName, query);
+	await db.close();
+	return val;
+});
+
+ipcMain.on("db-set", async (ev, args) => {
+	const db = new Database();
+	const colName = args[0];
+	const value = args[1];
+	await db.setValue(colName, value);
+	await db.close();
+});
+
+ipcMain.on("db-delete", async (ev, args) => {
+	const db = new Database();
+	const colName = args[0];
+	const value = args[1];
+	await db.deleteValue(colName, value);
+	await db.close();
 });
