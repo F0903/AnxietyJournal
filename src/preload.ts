@@ -47,7 +47,7 @@ class API implements IAPI {
 
 const send_receive = <T>(channel: string, ...data: unknown[]): Promise<T> => {
 	// REMEMBER TO WHITELIST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	const validChannels = ["file-browse", "file-read", "db-get", "db-get-all"];
+	const validChannels = ["db-get", "db-get-all"];
 	if (!validChannels.includes(channel))
 		throw `Window API was accessed with channel '${channel}', which is not whitelisted.`;
 	return ipcRenderer.invoke(channel, data);

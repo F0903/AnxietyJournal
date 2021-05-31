@@ -12,6 +12,29 @@
 	</head>
 	<body onload="OnLoad()">
 		<h1 class="title">Anxiety Journal</h1>
+		<div class="sidebar-container">
+			<div class="sidebar">
+				<div class="sidebar-top">
+					<span class="sidebar-top-title">Menu</span>
+				</div>
+				<div onclick="OnJournalClick()">
+					<i class="fas fa-book"></i>
+					<span>Journal</span>
+				</div>
+				<div onclick="OnExportClick()">
+					<i class="fas fa-file-export"></i>
+					<span>Export</span>
+				</div>
+			</div>
+			<div class="sidebar-filler sidebar-background"></div>
+			<iframe
+				class="sidebar-filler sidebar-page"
+				src="./Default/default.html"
+			></iframe>
+			<div class="sidebar-button" onclick="OnSidebarButtonClick()">
+				<i class="fas fa-bars"></i>
+			</div>
+		</div>
 		<div class="fields">
 			<div
 				onfocus="OnBoxFocus(this)"
@@ -33,7 +56,9 @@
 					max="10"
 					value="5"
 				/>
-				<span role="text" class="anxiety-slider-value">5</span>
+				<span role="text" class="anxiety-slider-value ceiling-underscore"
+					>5</span
+				>
 			</div>
 			<div
 				onfocus="OnBoxFocus(this)"
@@ -47,5 +72,10 @@
 				<i class="fas fa-check"></i>
 			</div>
 		</div>
+		<footer>
+			<div class="fortune-cookie">
+				<span class="fortune-cookie-text">Test test 123</span>
+			</div>
+		</footer>
 	</body>
 </html>

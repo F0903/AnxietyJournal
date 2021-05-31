@@ -8,7 +8,7 @@ app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: "Anxiety Noter",
 		darkTheme: true,
-		minHeight: 600,
+		minHeight: 650,
 		minWidth: 800,
 		webPreferences: {
 			nodeIntegration: false,
@@ -19,7 +19,7 @@ app.on("ready", async () => {
 	});
 
 	win.setMenuBarVisibility(false);
-	await win.loadFile("index.html");
+	await win.loadFile("./view/index.html");
 	win.show();
 });
 

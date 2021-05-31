@@ -1,0 +1,39 @@
+:root {
+	--primary-bg-color: hsl(250, 52%, 18%);
+	--secondary-bg-color: hsl(250, 52%, 25%);
+	--tertiary-bg-color: hsl(250, 52%, 30%);
+	--primary-color: hsl(250, 77%, 62%);
+	--primary-font: 500 18px "Josefin Sans";
+	--default-timing-func: cubic-bezier(0.65, 0.08, 0.24, 1);
+
+	background-color: var(--primary-bg-color);
+	font: var(--primary-font);
+	color: var(--primary-color);
+}
+
+[onclick] {
+	cursor: pointer;
+}
+
+:where(.underscore)::after {
+	content: "";
+	--width: 2ch;
+	display: block;
+	position: relative;
+	left: calc(50% - var(--width) / 2);
+	width: var(--width);
+	height: 2px;
+	background-color: var(--primary-color);
+}
+
+:where(.ceiling-underscore)::after {
+	content: "";
+	--width: 2ch;
+	display: block;
+	position: relative;
+	width: var(--width);
+	left: calc(50% - var(--width) / 2);
+	bottom: calc(1em + 5px);
+	height: 2px;
+	background-color: var(--primary-color);
+}

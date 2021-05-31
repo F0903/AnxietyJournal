@@ -1,0 +1,13 @@
+@import "./basic.css";
+
+:root {
+	background-color: var(--tertiary-bg-color);
+}
+
+.title {
+	text-align: center;
+	display: block;
+	font-size: 30px;
+	margin: auto;
+	margin-top: 10px;
+}
