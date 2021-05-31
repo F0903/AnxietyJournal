@@ -5,9 +5,33 @@
 	"private": true,
 	"main": "main.js",
 	"scripts": {
-		"start": "tsc && node buildaction.mjs && electron out/main.js",
-		"build": "tsc",
+		"build": "tsc && node buildaction.mjs",
+		"start": "npm run build && electron out/main.js",
+		"package": "npm run build && electron-builder",
 		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"build": {
+		"appId": "AnxietyJournal",
+		"productName": "Anxiety Journal",
+		"files": [
+			{
+				"from": "./out",
+				"to": "./"
+			}
+		],
+		"directories": {
+			"output": "./bin/"
+		},
+		"win": {
+			"target": [
+				"nsis"
+			]
+		},
+		"linux": {
+			"target": [
+				"tar.gz"
+			]
+		}
 	},
 	"author": "",
 	"license": "ISC",
@@ -22,6 +46,7 @@
 		"@typescript-eslint/parser": "^4.25.0",
 		"app-root-path": "^3.0.0",
 		"electron": "^13.0.1",
+		"electron-builder": "^22.10.5",
 		"eslint": "^7.27.0",
 		"eslint-config-prettier": "^8.3.0",
 		"fs-extra": "^8.1.0",

@@ -6,7 +6,7 @@ let win: BrowserWindow;
 
 app.on("ready", async () => {
 	win = new BrowserWindow({
-		title: "Anxiety Noter",
+		title: "Anxiety Journal",
 		darkTheme: true,
 		minHeight: 650,
 		minWidth: 800,

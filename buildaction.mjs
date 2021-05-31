@@ -4,7 +4,7 @@ import path from "path";
 
 const outDir = "./out/";
 
-const filesToCopy = ["src/set-exports.js"];
+const filesToCopy = ["./package.json", "./src/view/set-exports.js"];
 
 async function CopyToOut(file) {
 	const fName = path.basename(file);

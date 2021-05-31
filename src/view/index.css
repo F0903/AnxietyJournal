@@ -22,12 +22,25 @@
 }
 
 .sidebar-button {
+	--button-size: 33px;
 	z-index: 2;
 	position: fixed;
 	top: 10px;
 	left: 10px;
 	color: var(--primary-color);
-	font-size: 35px;
+	font-size: var(--button-size);
+	text-align: center;
+	width: calc(var(--button-size) + 8px);
+	height: calc(var(--button-size) + 8px);
+	background-color: var(--secondary-bg-color);
+	border-radius: 25%;
+}
+
+.sidebar-button > i {
+	--centering-offset: -1px;
+	position: relative;
+	top: calc(50% + var(--centering-offset));
+	transform: translateY(-50%);
 }
 
 .sidebar-button:hover {
@@ -35,6 +48,7 @@
 }
 
 .sidebar {
+	overflow: hidden;
 	z-index: 2;
 	display: flex;
 	flex-direction: column;
@@ -53,12 +67,32 @@
 	right: calc(100% - var(--sidebar-width));
 }
 
-.sidebar > * {
+.sidebar-items {
+	--top-margin: 30px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: baseline;
+	width: 100%;
+	margin-top: var(--top-margin);
+	padding: 0px 7px;
+}
+
+.sidebar-item {
+	background-color: var(--secondary-bg-color);
+	border-radius: 25%;
+}
+
+.sidebar-item:hover {
+	filter: brightness(120%);
+}
+
+.sidebar > .sidebar-item {
 	color: var(--primary-color);
 	margin-left: 20px;
 }
 
-.sidebar * + * {
+.sidebar :is(.sidebar-item, .sidebar-top-title) + .sidebar-item {
 	margin-top: 30px;
 }
 
@@ -71,7 +105,8 @@
 
 .sidebar-top-title {
 	position: relative;
-	top: 50%;
+	--title-y-offset: -3px;
+	top: calc(50% + var(--title-y-offset));
 	transform: translateY(-50%);
 }
 

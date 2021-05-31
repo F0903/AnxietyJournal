@@ -4,6 +4,10 @@
 	background-color: var(--tertiary-bg-color);
 }
 
+:where(.underscore)::after {
+	height: 4px;
+}
+
 .title {
 	text-align: center;
 	display: block;

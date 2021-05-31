@@ -17,16 +17,13 @@ function OnSidebarButtonClick() {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnJournalClick() {
-	const frame = document.querySelector(
-		"iframe.sidebar-page"
-	) as HTMLIFrameElement;
-	if (frame.getAttribute("data-src") === "Journal") return;
-	frame.setAttribute("src", "./Journal/journal.html");
-	frame.setAttribute("data-src", "Journal");
+	SetSidebarPage("./Journal/journal.html", "Journal");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function OnExportClick() {}
+async function OnExportClick() {
+	SetSidebarPage("./Export/export.html", "Export");
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function OnBoxFocus(elem: HTMLElement) {
@@ -81,6 +78,15 @@ function OnSliderChange(slider: HTMLInputElement) {
 		"span.anxiety-slider-value"
 	) as HTMLSpanElement;
 	valShower.innerText = slider.value;
+}
+
+function SetSidebarPage(path: string, pageName: string) {
+	const frame = document.querySelector(
+		"iframe.sidebar-page"
+	) as HTMLIFrameElement;
+	if (frame.getAttribute("data-src") === pageName) return;
+	frame.setAttribute("src", path);
+	frame.setAttribute("data-src", pageName);
 }
 
 const fortuneArray = [
