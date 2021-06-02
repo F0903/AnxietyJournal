@@ -50,8 +50,8 @@ async function OnSubmitClick() {
 	submitButton.classList.add("submit-animation");
 	submitButton.onanimationend = () =>
 		submitButton.classList.remove("submit-animation");
+
 	SummonFortune();
-	return;
 
 	const taskBox = document.querySelector("div.task-box") as HTMLElement;
 	const task = taskBox.innerText;
@@ -59,12 +59,14 @@ async function OnSubmitClick() {
 	const scaleSlider = document.querySelector(
 		"input.anxiety-slider"
 	) as HTMLInputElement;
+
 	const scale = parseInt(scaleSlider.value);
 	const noteBox = document.querySelector("div.note-box") as HTMLElement;
 	const note =
 		noteBox.innerText !== noteBox.getAttribute("placeholder")
 			? noteBox.innerText
 			: undefined;
+
 	await window.api.db_set("journal", {
 		task: task,
 		anxietyScale: scale,
