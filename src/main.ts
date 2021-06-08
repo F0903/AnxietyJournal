@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from "electron";
-import Database from "./db";
+import Database from "./db/journaldb";
 import path from "path";
 
 let win: BrowserWindow;
@@ -8,7 +8,7 @@ app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: "Anxiety Journal",
 		darkTheme: true,
-		minHeight: 650,
+		minHeight: 700,
 		minWidth: 800,
 		webPreferences: {
 			nodeIntegration: false,

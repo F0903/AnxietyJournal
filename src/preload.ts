@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { FilterQuery } from "mongodb";
-import { IJournalDocumentFrame } from "./db";
+import { IDocument } from "./db/db";
 
 declare global {
 	interface Window {
@@ -11,7 +11,7 @@ declare global {
 export interface IAPI {
 	db_get: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T | null>;
 	db_get_all: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T[]>;
-	db_set: (colName: string, value: IJournalDocumentFrame) => Promise<void>;
+	db_set: (colName: string, value: IDocument) => Promise<void>;
 	db_delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
 }
 
@@ -30,10 +30,7 @@ class API implements IAPI {
 		return send_receive("db-get-all", colName, query);
 	};
 
-	db_set = async (
-		colName: string,
-		value: IJournalDocumentFrame
-	): Promise<void> => {
+	db_set = async (colName: string, value: IDocument): Promise<void> => {
 		send("db-set", colName, value);
 	};
 
