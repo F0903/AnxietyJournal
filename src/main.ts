@@ -9,7 +9,7 @@ app.on("ready", async () => {
 		title: "Anxiety Journal",
 		darkTheme: true,
 		minHeight: 700,
-		minWidth: 800,
+		minWidth: 500,
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,

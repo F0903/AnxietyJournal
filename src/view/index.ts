@@ -17,12 +17,13 @@ function OnSidebarButtonClick() {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnJournalClick() {
-	SetSidebarPage("./Journal/journal.html", "Journal");
+	await OnJournalStart();
+	SetSidebarPage("Journal");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnExportClick() {
-	SetSidebarPage("./Export/export.html", "Export");
+	SetSidebarPage("Export");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -67,7 +68,7 @@ async function OnSubmitClick() {
 			? noteBox.innerText
 			: undefined;
 
-	await window.api.db_set("journal", {
+	await window.db.set("journal", {
 		task: task,
 		anxietyScale: scale,
 		optionalNote: note,
@@ -82,13 +83,49 @@ function OnSliderChange(slider: HTMLInputElement) {
 	valShower.innerText = slider.value;
 }
 
-function SetSidebarPage(path: string, pageName: string) {
-	const frame = document.querySelector(
-		"iframe.sidebar-page"
-	) as HTMLIFrameElement;
-	if (frame.getAttribute("data-src") === pageName) return;
-	frame.setAttribute("src", path);
-	frame.setAttribute("data-src", pageName);
+async function OnJournalStart(): Promise<void> {
+	const journal = await window.journal_db.get_all("journal", {});
+	const insertionNode = document.querySelector(
+		"div.journal-grid"
+	) as HTMLDivElement;
+	const template = document.querySelector(
+		"template.journal-item-template"
+	) as HTMLTemplateElement;
+	journal.forEach((element, i) => {
+		const itemFragment = template.content.cloneNode(true) as DocumentFragment;
+		insertionNode.append(itemFragment);
+		const item = insertionNode.querySelectorAll("div.journal-item")[
+			i
+		] as HTMLDivElement;
+		const title = item.querySelector(
+			"h2.journal-item-title"
+		) as HTMLHeadingElement;
+		const difficulty = item.querySelector(
+			"span.journal-item-difficulty"
+		) as HTMLSpanElement;
+		const note = item.querySelector(
+			"span.journal-item-note"
+		) as HTMLSpanElement;
+		title.textContent = element.task;
+		difficulty.textContent = element.anxietyScale.toString();
+		note.textContent = element.optionalNote ?? "No extra note :)";
+	});
+}
+
+function SetSidebarPage(pageName: string) {
+	const container = document.querySelector(
+		"div.sidebar-page-container"
+	) as HTMLDivElement;
+	let pageFound = false;
+	container.querySelectorAll("div.sidebar-page").forEach((elem) => {
+		if (elem.id === pageName) {
+			elem.classList.remove("hidden");
+			pageFound = true;
+			return;
+		}
+		elem.classList.add("hidden");
+	});
+	if (!pageFound) throw new Error(`Sidebar page "${pageName}" not found.`);
 }
 
 const fortuneArray = [

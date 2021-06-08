@@ -1,0 +1,30 @@
+.journal-grid {
+	display: flex;
+	flex-direction: column;
+	place-items: center center;
+}
+
+.journal-item {
+	display: flex;
+	flex-direction: column;
+	place-items: center flex-start;
+	border: 2px solid var(--secondary-bg-color);
+	border-radius: 4px;
+	margin-bottom: 5px;
+	padding: 5px;
+	min-width: 33%;
+}
+
+.journal-item-title {
+	margin: 10px 0px;
+	font-weight: 500;
+}
+
+.journal-item-difficulty {
+	font-size: 2em;
+	font-weight: 400;
+}
+
+.journal-item-note {
+	font-weight: 300;
+}

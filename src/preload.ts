@@ -1,43 +1,61 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { FilterQuery } from "mongodb";
 import { IDocument } from "./db/db";
+import { JournalDocument } from "./db/journaldb";
 
 declare global {
 	interface Window {
-		api: IAPI;
+		db: IDbApi;
+		journal_db: IJournalDbApi;
 	}
 }
 
-export interface IAPI {
-	db_get: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T | null>;
-	db_get_all: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T[]>;
-	db_set: (colName: string, value: IDocument) => Promise<void>;
-	db_delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
+export interface IJournalDbApi {
+	get_all: <Q>(
+		colName: string,
+		query: FilterQuery<Q>
+	) => Promise<readonly JournalDocument[]>;
 }
 
-class API implements IAPI {
-	db_get = async <T, Q>(
+class JournalDbApi implements IJournalDbApi {
+	get_all = <Q>(
+		colName: string,
+		query: FilterQuery<Q>
+	): Promise<readonly JournalDocument[]> => {
+		return send_receive("db-get-all", colName, query);
+	};
+}
+
+export interface IDbApi {
+	get: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T | null>;
+	get_all: <T, Q>(
+		colName: string,
+		query: FilterQuery<Q>
+	) => Promise<readonly T[]>;
+	set: (colName: string, value: IDocument) => Promise<void>;
+	delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
+}
+
+class DbApi implements IDbApi {
+	get = async <T, Q>(
 		colName: string,
 		query: FilterQuery<Q>
 	): Promise<T | null> => {
 		return send_receive("db-get", colName, query);
 	};
 
-	db_get_all = async <T, Q>(
+	get_all = async <T, Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<T[]> => {
+	): Promise<readonly T[]> => {
 		return send_receive("db-get-all", colName, query);
 	};
 
-	db_set = async (colName: string, value: IDocument): Promise<void> => {
+	set = async (colName: string, value: IDocument): Promise<void> => {
 		send("db-set", colName, value);
 	};
 
-	db_delete = async <Q>(
-		colName: string,
-		query: FilterQuery<Q>
-	): Promise<void> => {
+	delete = async <Q>(colName: string, query: FilterQuery<Q>): Promise<void> => {
 		return send("db-delete", colName, query);
 	};
 }
@@ -59,4 +77,5 @@ const send = (channel: string, ...data: unknown[]): Promise<void> => {
 	return Promise.resolve();
 };
 
-contextBridge.exposeInMainWorld("api", new API());
+contextBridge.exposeInMainWorld("db", new DbApi());
+contextBridge.exposeInMainWorld("journal_db", new JournalDbApi());

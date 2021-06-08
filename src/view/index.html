@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title>Anxiety Journal</title>
-		<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+		<link rel="stylesheet" type="text/css" href="main.css" />
+		<link rel="stylesheet" type="text/css" href="journal.css" />
 		<script
 			src="https://kit.fontawesome.com/cfa5b36771.js"
 			crossorigin="anonymous"
@@ -10,6 +11,15 @@
 		<script src="set-exports.js"></script>
 		<script src="index.js"></script>
 	</head>
+
+	<template class="journal-item-template">
+		<div class="journal-item">
+			<h2 class="journal-item-title underscore">Task</h2>
+			<span class="journal-item-difficulty">Diff</span>
+			<span class="journal-item-note">Note</span>
+		</div>
+	</template>
+
 	<body onload="OnLoad()">
 		<h1 class="title">Anxiety Journal</h1>
 		<div class="sidebar-container">
@@ -29,10 +39,20 @@
 				</div>
 			</div>
 			<div class="sidebar-filler sidebar-background"></div>
-			<iframe
-				class="sidebar-filler sidebar-page"
-				src="./Default/default.html"
-			></iframe>
+			<div class="sidebar-filler sidebar-page-container">
+				<div id="Default" class="sidebar-page">
+					<h1 class="sidebar-page-title underscore">Hello!</h1>
+					<p class="description">
+						Welcome to AnxietyJournal! I hope you find this small app useful and
+						intuitive. If you should come across any bugs, or any feature ideas,
+						don't be afraid to submit them on the GitHub page :)
+					</p>
+				</div>
+				<div id="Journal" class="sidebar-page hidden">
+					<h1 class="sidebar-page-title underscore">Journal</h1>
+					<div class="journal-grid"></div>
+				</div>
+			</div>
 			<div class="sidebar-button" onclick="OnSidebarButtonClick()">
 				<i class="fas fa-bars"></i>
 			</div>
