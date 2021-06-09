@@ -13,6 +13,12 @@
 	margin-bottom: 5px;
 	padding: 5px;
 	min-width: 33%;
+	text-align: center;
+}
+
+.journal-item > * {
+	width: 100%;
+	border-bottom: 3px;
 }
 
 .journal-item-title {
@@ -21,6 +27,9 @@
 }
 
 .journal-item-difficulty {
+	position: relative;
+	top: 0;
+	right: 0;
 	font-size: 2em;
 	font-weight: 400;
 }

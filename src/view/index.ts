@@ -17,13 +17,12 @@ function OnSidebarButtonClick() {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnJournalClick() {
-	await OnJournalStart();
-	SetSidebarPage("Journal");
+	if (SetSidebarPage("Journal")) await OnJournalStart();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnExportClick() {
-	SetSidebarPage("Export");
+	//SetSidebarPage("Export");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -91,12 +90,10 @@ async function OnJournalStart(): Promise<void> {
 	const template = document.querySelector(
 		"template.journal-item-template"
 	) as HTMLTemplateElement;
-	journal.forEach((element, i) => {
+	journal.forEach((element) => {
 		const itemFragment = template.content.cloneNode(true) as DocumentFragment;
-		insertionNode.append(itemFragment);
-		const item = insertionNode.querySelectorAll("div.journal-item")[
-			i
-		] as HTMLDivElement;
+		const item = itemFragment.firstChild?.nextSibling as HTMLDivElement;
+		console.log(item);
 		const title = item.querySelector(
 			"h2.journal-item-title"
 		) as HTMLHeadingElement;
@@ -109,13 +106,22 @@ async function OnJournalStart(): Promise<void> {
 		title.textContent = element.task;
 		difficulty.textContent = element.anxietyScale.toString();
 		note.textContent = element.optionalNote ?? "No extra note :)";
+		insertionNode.append(itemFragment);
 	});
+}
+
+function GetActiveSidebarPage(cachedContainer?: HTMLDivElement) {
+	cachedContainer ??= document.querySelector(
+		"div.sidebar-page-container"
+	) as HTMLDivElement;
+	return cachedContainer.getAttribute("data-active-page");
 }
 
 function SetSidebarPage(pageName: string) {
 	const container = document.querySelector(
 		"div.sidebar-page-container"
 	) as HTMLDivElement;
+	if (GetActiveSidebarPage(container) === pageName) return false;
 	let pageFound = false;
 	container.querySelectorAll("div.sidebar-page").forEach((elem) => {
 		if (elem.id === pageName) {
@@ -126,6 +132,8 @@ function SetSidebarPage(pageName: string) {
 		elem.classList.add("hidden");
 	});
 	if (!pageFound) throw new Error(`Sidebar page "${pageName}" not found.`);
+	container.setAttribute("data-active-page", pageName);
+	return pageFound;
 }
 
 const fortuneArray = [

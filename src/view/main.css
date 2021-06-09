@@ -60,7 +60,7 @@
 }
 
 .sidebar-container {
-	--sidebar-width: 200px;
+	--sidebar-width: 160px;
 }
 
 .sidebar-button {
@@ -95,7 +95,7 @@
 	display: flex;
 	flex-direction: column;
 	align-content: center;
-	align-items: baseline;
+	align-items: center;
 	transition: right 200ms var(--default-timing-func);
 	position: fixed;
 	top: 0px;
@@ -109,20 +109,36 @@
 	right: calc(100% - var(--sidebar-width));
 }
 
+.sidebar-top {
+	width: 100%;
+	height: 40px;
+	font-size: 26px;
+	text-align: center;
+}
+
+.sidebar-top-title {
+	position: relative;
+	--title-y-offset: -3px;
+	--title-x-offset: 30px;
+	top: calc(50% + var(--title-y-offset));
+	transform: translateY(-50%);
+	margin-left: var(--title-x-offset);
+}
+
 .sidebar-items {
 	--top-margin: 30px;
 	display: flex;
 	flex-direction: column;
 	align-content: center;
-	align-items: baseline;
+	align-items: center;
 	width: 100%;
 	margin-top: var(--top-margin);
-	padding: 0px 7px;
 }
 
 .sidebar-item {
 	background-color: var(--secondary-bg-color);
-	border-radius: 25%;
+	border-radius: 25vh;
+	padding: 10px;
 }
 
 .sidebar-item:hover {
@@ -136,20 +152,6 @@
 
 .sidebar :is(.sidebar-item, .sidebar-top-title) + .sidebar-item {
 	margin-top: 30px;
-}
-
-.sidebar-top {
-	width: 100%;
-	height: 40px;
-	font-size: 26px;
-	text-align: center;
-}
-
-.sidebar-top-title {
-	position: relative;
-	--title-y-offset: -3px;
-	top: calc(50% + var(--title-y-offset));
-	transform: translateY(-50%);
 }
 
 .sidebar-filler {
