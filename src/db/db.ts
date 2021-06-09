@@ -1,5 +1,4 @@
-import { Db, FilterQuery, MongoClient, Collection } from "mongodb";
-import { ObjectId } from "mongodb";
+import { Db, FilterQuery, MongoClient, Collection, ObjectID } from "mongodb";
 
 const dbUri = "mongodb://localhost:27017/";
 
@@ -7,7 +6,7 @@ const dbUri = "mongodb://localhost:27017/";
 export interface IDocument {}
 
 export class Document implements IDocument {
-	_id: ObjectId = new ObjectId();
+	_id: ObjectID = new ObjectID();
 }
 
 export default class Database<T extends Document> {
@@ -52,9 +51,10 @@ export default class Database<T extends Document> {
 		return vals.toArray();
 	}
 
+	//TODO: Fix invalid objectid error.
 	async setValue(collectionName: string, doc: T): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
-		if (!doc["_id"]) doc._id = new ObjectId();
+		if (!doc["_id"]) doc._id = new ObjectID();
 		await col.updateOne({ _id: doc._id }, { $set: doc }, { upsert: true });
 	}
 

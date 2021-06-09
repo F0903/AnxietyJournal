@@ -67,9 +67,10 @@ async function OnSubmitClick() {
 			? noteBox.innerText
 			: undefined;
 
-	await window.db.set("journal", {
+	await window.journal_db.set("journal", {
 		task: task,
 		anxietyScale: scale,
+		date: new Date(),
 		optionalNote: note,
 	});
 }
@@ -98,13 +99,24 @@ async function OnJournalStart(): Promise<void> {
 			"h2.journal-item-title"
 		) as HTMLHeadingElement;
 		const difficulty = item.querySelector(
-			"span.journal-item-difficulty"
-		) as HTMLSpanElement;
+			"div.journal-item-difficulty"
+		) as HTMLDivElement;
+		const date = item.querySelector(
+			"h4.journal-item-date"
+		) as HTMLHeadingElement;
 		const note = item.querySelector(
 			"span.journal-item-note"
 		) as HTMLSpanElement;
 		title.textContent = element.task;
 		difficulty.textContent = element.anxietyScale.toString();
+
+		//TEMP
+		if (element.date === null || element.date === undefined) {
+			element.date = new Date();
+			window.db.set("journal", element);
+		}
+
+		date.textContent = element.date.toLocaleDateString();
 		note.textContent = element.optionalNote ?? "No extra note :)";
 		insertionNode.append(itemFragment);
 	});

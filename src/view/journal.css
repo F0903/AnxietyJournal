@@ -5,15 +5,19 @@
 }
 
 .journal-item {
-	display: flex;
-	flex-direction: column;
-	place-items: center flex-start;
 	border: 2px solid var(--secondary-bg-color);
 	border-radius: 4px;
 	margin-bottom: 5px;
 	padding: 5px;
 	min-width: 33%;
 	text-align: center;
+	overflow: hidden;
+}
+
+.journal-item-fields {
+	display: flex;
+	flex-direction: column;
+	place-items: center flex-start;
 }
 
 .journal-item > * {
@@ -27,11 +31,19 @@
 }
 
 .journal-item-difficulty {
+	--diff-text-height: 2ch;
+	--diff-text-width: 2ch;
 	position: relative;
 	top: 0;
-	right: 0;
+	left: calc(50% - var(--diff-text-width) / 2);
+	border: 2px solid var(--secondary-bg-color);
+	border-radius: 40vh;
+	height: var(--diff-text-height);
+	line-height: calc(7px + var(--diff-text-height));
+	width: var(--diff-text-width);
 	font-size: 2em;
 	font-weight: 400;
+	margin-top: 6px;
 }
 
 .journal-item-note {

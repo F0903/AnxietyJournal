@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { FilterQuery } from "mongodb";
 import { IDocument } from "./db/db";
-import { JournalDocument } from "./db/journaldb";
+import { IJournalDocument } from "./db/journaldb";
 
 declare global {
 	interface Window {
@@ -14,15 +14,21 @@ export interface IJournalDbApi {
 	get_all: <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	) => Promise<readonly JournalDocument[]>;
+	) => Promise<readonly IJournalDocument[]>;
+
+	set: (colName: string, value: IJournalDocument) => Promise<void>;
 }
 
 class JournalDbApi implements IJournalDbApi {
 	get_all = <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly JournalDocument[]> => {
+	): Promise<readonly IJournalDocument[]> => {
 		return send_receive("db-get-all", colName, query);
+	};
+
+	set = (colName: string, value: IJournalDocument): Promise<void> => {
+		return send("db-set", colName, value);
 	};
 }
 
@@ -52,7 +58,7 @@ class DbApi implements IDbApi {
 	};
 
 	set = async (colName: string, value: IDocument): Promise<void> => {
-		send("db-set", colName, value);
+		return send("db-set", colName, value);
 	};
 
 	delete = async <Q>(colName: string, query: FilterQuery<Q>): Promise<void> => {
