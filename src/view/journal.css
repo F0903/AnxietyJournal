@@ -5,13 +5,13 @@
 }
 
 .journal-item {
+	position: relative;
 	border: 2px solid var(--secondary-bg-color);
 	border-radius: 4px;
-	margin-bottom: 5px;
+	margin-bottom: 20px;
 	padding: 5px;
 	min-width: 33%;
 	text-align: center;
-	overflow: hidden;
 }
 
 .journal-item-fields {
@@ -25,9 +25,43 @@
 	border-bottom: 3px;
 }
 
+.journal-item-close {
+	--close-x-size: 25px;
+	--close-size: calc(var(--close-x-size) + 8px);
+	position: absolute;
+	top: calc(-1 * var(--close-size) / 2);
+	right: calc(-1 * var(--close-size) / 2);
+	transition-property: background-color;
+	transition-duration: 200ms;
+	width: var(--close-size);
+	height: var(--close-size);
+	background-color: var(--tertiary-bg-color);
+	border-radius: 50%;
+	border: 2px solid var(--secondary-bg-color);
+}
+
+.journal-item-close:hover {
+	background-color: var(--primary-color);
+}
+
+.journal-item-close i {
+	transition-property: color;
+	transition-duration: 100ms;
+	color: var(--secondary-bg-color);
+	text-align: center;
+	font-size: var(--close-x-size);
+	line-height: var(--close-size);
+}
+
 .journal-item-title {
 	margin: 10px 0px;
+	margin-bottom: 0px;
 	font-weight: 500;
+}
+
+.journal-item-date {
+	margin-top: 5px;
+	font-weight: 400;
 }
 
 .journal-item-difficulty {
@@ -48,4 +82,5 @@
 
 .journal-item-note {
 	font-weight: 300;
+	margin-bottom: 6px;
 }

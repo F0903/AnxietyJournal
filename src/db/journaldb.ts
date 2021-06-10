@@ -1,4 +1,4 @@
-import Database, { Document } from "./db";
+import Database, { DbDocument } from "./db";
 
 export interface IJournalDocument {
 	task: string;
@@ -7,7 +7,7 @@ export interface IJournalDocument {
 	optionalNote?: string;
 }
 
-export class JournalDocument extends Document implements IJournalDocument {
+export class JournalDocument extends DbDocument implements IJournalDocument {
 	task: string;
 	anxietyScale: number;
 	date: Date;

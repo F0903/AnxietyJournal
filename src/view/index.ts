@@ -83,6 +83,13 @@ function OnSliderChange(slider: HTMLInputElement) {
 	valShower.innerText = slider.value;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function OnJournalDelete(item: HTMLDivElement) {
+	const id = item.getAttribute("data-id") as string;
+	await window.db.delete("journal", { _id: id });
+	item.remove();
+}
+
 async function OnJournalStart(): Promise<void> {
 	const journal = await window.journal_db.get_all("journal", {});
 	const insertionNode = document.querySelector(
@@ -94,7 +101,6 @@ async function OnJournalStart(): Promise<void> {
 	journal.forEach((element) => {
 		const itemFragment = template.content.cloneNode(true) as DocumentFragment;
 		const item = itemFragment.firstChild?.nextSibling as HTMLDivElement;
-		console.log(item);
 		const title = item.querySelector(
 			"h2.journal-item-title"
 		) as HTMLHeadingElement;
@@ -107,15 +113,9 @@ async function OnJournalStart(): Promise<void> {
 		const note = item.querySelector(
 			"span.journal-item-note"
 		) as HTMLSpanElement;
+		item.setAttribute("data-id", element._id);
 		title.textContent = element.task;
 		difficulty.textContent = element.anxietyScale.toString();
-
-		//TEMP
-		if (element.date === null || element.date === undefined) {
-			element.date = new Date();
-			window.db.set("journal", element);
-		}
-
 		date.textContent = element.date.toLocaleDateString();
 		note.textContent = element.optionalNote ?? "No extra note :)";
 		insertionNode.append(itemFragment);

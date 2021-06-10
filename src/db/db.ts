@@ -3,9 +3,9 @@ import { Db, FilterQuery, MongoClient, Collection, ObjectID } from "mongodb";
 const dbUri = "mongodb://localhost:27017/";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IDocument {}
+export interface IDbDocument {}
 
-export class Document implements IDocument {
+export class DbDocument implements IDbDocument {
 	// Needs to be stored as a string. Otherwise it will be converted from an ObjectID when passed through electron IPC.
 	_id: string = new ObjectID().toHexString();
 }
@@ -38,7 +38,7 @@ export default class Database {
 	async getValue<Q>(
 		collectionName: string,
 		query: FilterQuery<Q>
-	): Promise<Document | null> {
+	): Promise<DbDocument | null> {
 		const col = await this.findOrCreateCol(collectionName);
 		return col.findOne(query);
 	}
@@ -46,13 +46,13 @@ export default class Database {
 	async getAll<Q>(
 		collectionName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly Document[]> {
+	): Promise<readonly DbDocument[]> {
 		const col = await this.findOrCreateCol(collectionName);
 		const vals = col.find(query);
 		return vals.toArray();
 	}
 
-	async setValue(collectionName: string, doc: Document): Promise<void> {
+	async setValue(collectionName: string, doc: DbDocument): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
 		if (!doc["_id"]) doc._id = new ObjectID().toHexString();
 		await col.updateOne({ _id: doc._id }, { $set: doc }, { upsert: true });

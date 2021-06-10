@@ -13,9 +13,15 @@
 	</head>
 
 	<template class="journal-item-template">
-		<div class="journal-item">
+		<div class="journal-item" data-id="">
+			<div
+				class="journal-item-close"
+				onclick="OnJournalDelete(this.parentElement)"
+			>
+				<i class="fas fa-times"></i>
+			</div>
 			<div class="journal-item-fields">
-				<h2 class="journal-item-title">Task</h2>
+				<h2 class="journal-item-title underscore">Task</h2>
 				<h4 class="journal-item-date">Date</h4>
 				<span class="journal-item-note">Note</span>
 			</div>

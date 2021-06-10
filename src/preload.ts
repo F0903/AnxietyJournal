@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { FilterQuery } from "mongodb";
-import { IDocument } from "./db/db";
-import { IJournalDocument } from "./db/journaldb";
+import { IDbDocument } from "./db/db";
+import { IJournalDocument, JournalDocument } from "./db/journaldb";
 
 declare global {
 	interface Window {
@@ -14,7 +14,7 @@ export interface IJournalDbApi {
 	get_all: <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	) => Promise<readonly IJournalDocument[]>;
+	) => Promise<readonly JournalDocument[]>;
 
 	set: (colName: string, value: IJournalDocument) => Promise<void>;
 }
@@ -23,7 +23,7 @@ class JournalDbApi implements IJournalDbApi {
 	get_all = <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly IJournalDocument[]> => {
+	): Promise<readonly JournalDocument[]> => {
 		return send_receive("db-get-all", colName, query);
 	};
 
@@ -33,12 +33,12 @@ class JournalDbApi implements IJournalDbApi {
 }
 
 export interface IDbApi {
-	get: <Q>(colName: string, query: FilterQuery<Q>) => Promise<IDocument | null>;
+	get: <Q>(colName: string, query: FilterQuery<Q>) => Promise<IDbDocument | null>;
 	get_all: <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	) => Promise<readonly IDocument[]>;
-	set: (colName: string, value: IDocument) => Promise<void>;
+	) => Promise<readonly IDbDocument[]>;
+	set: (colName: string, value: IDbDocument) => Promise<void>;
 	delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
 }
 
@@ -46,18 +46,18 @@ class DbApi implements IDbApi {
 	get = async <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<IDocument | null> => {
+	): Promise<IDbDocument | null> => {
 		return send_receive("db-get", colName, query);
 	};
 
 	get_all = async <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly IDocument[]> => {
+	): Promise<readonly IDbDocument[]> => {
 		return send_receive("db-get-all", colName, query);
 	};
 
-	set = async (colName: string, value: IDocument): Promise<void> => {
+	set = async (colName: string, value: IDbDocument): Promise<void> => {
 		return send("db-set", colName, value);
 	};
 
