@@ -27,7 +27,7 @@ export class JournalDocument extends Document implements IJournalDocument {
 	}
 }
 
-export default class JournalDatabase extends Database<JournalDocument> {
+export default class JournalDatabase extends Database {
 	constructor() {
 		super("AnxietyJournal");
 	}

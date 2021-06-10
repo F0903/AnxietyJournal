@@ -6,10 +6,11 @@ const dbUri = "mongodb://localhost:27017/";
 export interface IDocument {}
 
 export class Document implements IDocument {
-	_id: ObjectID = new ObjectID();
+	// Needs to be stored as a string. Otherwise it will be converted from an ObjectID when passed through electron IPC.
+	_id: string = new ObjectID().toHexString();
 }
 
-export default class Database<T extends Document> {
+export default class Database {
 	protected dbName: string;
 	private mongo: MongoClient;
 	private db: Db;
@@ -34,27 +35,26 @@ export default class Database<T extends Document> {
 		await this.mongo.close();
 	}
 
-	async getValue<T, Q>(
+	async getValue<Q>(
 		collectionName: string,
 		query: FilterQuery<Q>
-	): Promise<T | null> {
+	): Promise<Document | null> {
 		const col = await this.findOrCreateCol(collectionName);
 		return col.findOne(query);
 	}
 
-	async getAll<T, Q>(
+	async getAll<Q>(
 		collectionName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly T[]> {
+	): Promise<readonly Document[]> {
 		const col = await this.findOrCreateCol(collectionName);
 		const vals = col.find(query);
 		return vals.toArray();
 	}
 
-	//TODO: Fix invalid objectid error.
-	async setValue(collectionName: string, doc: T): Promise<void> {
+	async setValue(collectionName: string, doc: Document): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
-		if (!doc["_id"]) doc._id = new ObjectID();
+		if (!doc["_id"]) doc._id = new ObjectID().toHexString();
 		await col.updateOne({ _id: doc._id }, { $set: doc }, { upsert: true });
 	}
 

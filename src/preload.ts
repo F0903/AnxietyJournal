@@ -33,27 +33,27 @@ class JournalDbApi implements IJournalDbApi {
 }
 
 export interface IDbApi {
-	get: <T, Q>(colName: string, query: FilterQuery<Q>) => Promise<T | null>;
-	get_all: <T, Q>(
+	get: <Q>(colName: string, query: FilterQuery<Q>) => Promise<IDocument | null>;
+	get_all: <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	) => Promise<readonly T[]>;
+	) => Promise<readonly IDocument[]>;
 	set: (colName: string, value: IDocument) => Promise<void>;
 	delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
 }
 
 class DbApi implements IDbApi {
-	get = async <T, Q>(
+	get = async <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<T | null> => {
+	): Promise<IDocument | null> => {
 		return send_receive("db-get", colName, query);
 	};
 
-	get_all = async <T, Q>(
+	get_all = async <Q>(
 		colName: string,
 		query: FilterQuery<Q>
-	): Promise<readonly T[]> => {
+	): Promise<readonly IDocument[]> => {
 		return send_receive("db-get-all", colName, query);
 	};
 
