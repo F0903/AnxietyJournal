@@ -6,21 +6,30 @@
 			"script": "start",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: start"
+			"label": "npm: start",
+			"presentation": {
+				"close": true
+			}
 		},
 		{
 			"type": "npm",
 			"script": "build",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: build"
+			"label": "npm: build",
+			"presentation": {
+				"close": true
+			}
 		},
 		{
 			"type": "npm",
 			"script": "package",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: package"
+			"label": "npm: package",
+			"presentation": {
+				"close": true
+			}
 		}
 	]
 }
