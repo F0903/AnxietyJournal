@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "1.0.0",
+	"version": "0.8.0",
 	"description": "A simple tool for taking note of your anxiety.",
 	"private": true,
 	"main": "main.js",
