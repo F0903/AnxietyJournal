@@ -175,10 +175,10 @@
 .sidebar-page {
 	background-color: var(--tertiary-bg-color);
 	border-color: var(--tertiary-bg-color);
-	padding: 5px 10px;
 	margin: 0px;
 	outline: none;
 	border: none;
+	height: 100%;
 }
 
 .sidebar-page-title {

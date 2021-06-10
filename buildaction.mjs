@@ -8,7 +8,7 @@ const filesToCopy = ["./package.json", "./src/view/set-exports.js"];
 
 async function CopyToOut(file) {
 	const fName = path.basename(file);
-	const fDir = path.dirname(file).replace("src", "");
+	const fDir = path.dirname(file); //.replace("src", "");
 
 	const dest = path.join(outDir, fDir, fName);
 	await fs.copy(file, dest);

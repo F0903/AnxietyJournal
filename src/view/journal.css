@@ -1,7 +1,14 @@
 .journal-grid {
+	--grid-top-padding: 20px;
 	display: flex;
 	flex-direction: column;
 	place-items: center center;
+	padding-top: var(--grid-top-padding);
+	width: 100%;
+
+	height: calc(100% - 97px);
+	overflow-y: scroll;
+	overflow-x: visible;
 }
 
 .journal-item {
@@ -11,6 +18,7 @@
 	margin-bottom: 20px;
 	padding: 5px;
 	min-width: 33%;
+	max-width: 90%;
 	text-align: center;
 }
 
@@ -21,7 +29,6 @@
 }
 
 .journal-item > * {
-	width: 100%;
 	border-bottom: 3px;
 }
 

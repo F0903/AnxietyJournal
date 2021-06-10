@@ -1,15 +1,16 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
+import { version } from "../package.json";
 
 let win: BrowserWindow;
 
 app.on("ready", async () => {
 	win = new BrowserWindow({
-		title: "Anxiety Journal",
+		title: `Anxiety Journal v${version}`,
 		darkTheme: true,
 		minHeight: 700,
-		minWidth: 500,
+		minWidth: 650,
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
@@ -17,7 +18,6 @@ app.on("ready", async () => {
 			preload: path.join(__dirname, "preload.js"),
 		},
 	});
-
 	win.setMenuBarVisibility(false);
 	await win.loadFile("./view/index.html");
 	win.show();

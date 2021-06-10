@@ -17,7 +17,7 @@ function OnSidebarButtonClick() {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnJournalClick() {
-	if (SetSidebarPage("Journal")) await OnJournalStart();
+	if (SetSidebarPage("Journal")) await UpdateJournalItems();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -73,6 +73,8 @@ async function OnSubmitClick() {
 		date: new Date(),
 		optionalNote: note,
 	});
+
+	if (GetActiveSidebarPage() === "Journal") await UpdateJournalItems();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -90,11 +92,12 @@ async function OnJournalDelete(item: HTMLDivElement) {
 	item.remove();
 }
 
-async function OnJournalStart(): Promise<void> {
+async function UpdateJournalItems(): Promise<void> {
 	const journal = await window.journal_db.get_all("journal", {});
 	const insertionNode = document.querySelector(
 		"div.journal-grid"
 	) as HTMLDivElement;
+	insertionNode.textContent = "";
 	const template = document.querySelector(
 		"template.journal-item-template"
 	) as HTMLTemplateElement;
