@@ -9,9 +9,9 @@ function OnLoad() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function OnLink(elem: HTMLElement) {
+async function OnLink(elem: HTMLElement) {
 	const link = elem.getAttribute("data-link") as string;
-
+	await window.link.link_open(link);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -38,6 +38,10 @@
 	background-color: var(--primary-color);
 }
 
+.text-link[data-link] {
+	text-decoration: underline;
+}
+
 .title {
 	user-select: none;
 	font-size: 3rem;

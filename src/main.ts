@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
+import { shell } from "electron";
 import { version } from "../package.json";
 
 let win: BrowserWindow;
@@ -60,4 +61,9 @@ ipcMain.on("db-delete", async (ev, args) => {
 	const value = args[1];
 	await db.deleteValue(colName, value);
 	await db.close();
+});
+
+ipcMain.on("link-open", async (ev, args) => {
+	const link = args[0];
+	await shell.openExternal(link);
 });

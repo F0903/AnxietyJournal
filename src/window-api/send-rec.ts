@@ -10,8 +10,8 @@ async function initWhitelist() {
 	const dir = path.dirname(__filename);
 	const files = await fs.readdir(dir);
 	for (const file of files) {
-		if (path.extname(file) !== ".js") return;
-		if (file === path.basename(__filename)) return;
+		if (path.extname(file) !== ".js") continue;
+		if (file === path.basename(__filename)) continue;
 		const { whitelist } = await import(path.join(dir, file));
 		(whitelist as string[]).forEach((val) => permitted_channels.add(val));
 	}
