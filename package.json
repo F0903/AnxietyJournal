@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.8.0",
+	"version": "0.8.2",
 	"description": "A simple tool for taking note of your anxiety.",
 	"private": true,
 	"main": "src/main.js",
@@ -36,7 +36,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"mongodb": "^3.6.9"
+		"mongodb": "^3.6.9",
+		"xlsx": "^0.17.0"
 	},
 	"devDependencies": {
 		"@types/app-root-path": "^1.2.4",

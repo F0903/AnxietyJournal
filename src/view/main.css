@@ -38,10 +38,6 @@
 	background-color: var(--primary-color);
 }
 
-.hidden {
-	display: none;
-}
-
 .title {
 	user-select: none;
 	font-size: 3rem;
@@ -173,6 +169,7 @@
 }
 
 .sidebar-page {
+	display: none;
 	background-color: var(--tertiary-bg-color);
 	border-color: var(--tertiary-bg-color);
 	margin: 0px;
@@ -181,9 +178,17 @@
 	height: 100%;
 }
 
+.sidebar-page.shown {
+	display: block;
+}
+
 .sidebar-page-title {
 	font-size: 1.8rem;
 	text-align: center;
+}
+
+.about-description-container {
+	padding: 0px 20px;
 }
 
 .fields {

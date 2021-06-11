@@ -3,6 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="main.css" />
 		<link rel="stylesheet" type="text/css" href="journal.css" />
+		<link rel="stylesheet" type="text/css" href="export.css" />
 		<script
 			src="https://kit.fontawesome.com/cfa5b36771.js"
 			crossorigin="anonymous"
@@ -44,21 +45,38 @@
 						<i class="fas fa-file-export"></i>
 						<span>Export</span>
 					</div>
+					<div class="sidebar-item" onclick="OnAboutClick()">
+						<i class="fas fa-info"></i>
+						<span>About</span>
+					</div>
 				</div>
 			</div>
 			<div class="sidebar-filler sidebar-background"></div>
 			<div class="sidebar-filler sidebar-page-container">
-				<div id="Default" class="sidebar-page">
+				<div id="About" class="sidebar-page shown">
 					<h1 class="sidebar-page-title underscore">Hello!</h1>
-					<p class="description">
-						Welcome to AnxietyJournal! I hope you find this small app useful and
-						intuitive. If you should come across any bugs, or any feature ideas,
-						don't be afraid to submit them on the GitHub page :)
-					</p>
+					<div class="about-description-container">
+						<p class="about-description">
+							Welcome to AnxietyJournal! I hope you find this small app useful
+							and intuitive. If you should come across any bugs, or any feature
+							ideas, don't be afraid to submit them on the
+							<a
+								class="text-link"
+								data-link="https://github.com/F0903/AnxietyJournal"
+								onclick="OnLink(this)"
+								>GitHub page</a
+							>
+							:)
+						</p>
+					</div>
 				</div>
-				<div id="Journal" class="sidebar-page hidden">
+				<div id="Journal" class="sidebar-page">
 					<h1 class="sidebar-page-title underscore">Journal</h1>
 					<div class="journal-grid"></div>
+				</div>
+				<div id="Export" class="sidebar-page">
+					<h1 class="sidebar-page-title underscore">Export</h1>
+					<div class="exporter"></div>
 				</div>
 			</div>
 			<div class="sidebar-button" onclick="OnSidebarButtonClick()">

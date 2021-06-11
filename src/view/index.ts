@@ -9,6 +9,12 @@ function OnLoad() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+function OnLink(elem: HTMLElement) {
+	const link = elem.getAttribute("data-link") as string;
+
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function OnSidebarButtonClick() {
 	const sidebar = document.querySelector("div.sidebar") as HTMLDivElement;
 	if (!sidebar.classList.contains("shown")) sidebar.classList.add("shown");
@@ -21,8 +27,13 @@ async function OnJournalClick() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function OnExportClick() {
-	//SetSidebarPage("Export");
+function OnExportClick() {
+	SetSidebarPage("Export");
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function OnAboutClick() {
+	SetSidebarPage("About");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -92,6 +103,7 @@ async function OnJournalDelete(item: HTMLDivElement) {
 	item.remove();
 }
 
+//TODO: Find a way to seperate Journal functions to their own seperate files.
 async function UpdateJournalItems(): Promise<void> {
 	const journal = await window.journal_db.get_all("journal", {});
 	const insertionNode = document.querySelector(
@@ -140,11 +152,11 @@ function SetSidebarPage(pageName: string) {
 	let pageFound = false;
 	container.querySelectorAll("div.sidebar-page").forEach((elem) => {
 		if (elem.id === pageName) {
-			elem.classList.remove("hidden");
+			elem.classList.add("shown");
 			pageFound = true;
 			return;
 		}
-		elem.classList.add("hidden");
+		elem.classList.remove("shown");
 	});
 	if (!pageFound) throw new Error(`Sidebar page "${pageName}" not found.`);
 	container.setAttribute("data-active-page", pageName);
