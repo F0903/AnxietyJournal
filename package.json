@@ -5,9 +5,10 @@
 	"private": true,
 	"main": "src/main.js",
 	"scripts": {
-		"build": "",
-		"start": "npm run build && electron out/src/main.js",
-		"package": "npm run build && electron-builder",
+		"build:dev": "webpack",
+		"build:pub": "webpack --mode=production",
+		"start": "npm run build:dev && electron out/main.js",
+		"package": "npm run build:pub && electron-builder",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"build": {
@@ -38,6 +39,7 @@
 	"dependencies": {
 		"fs-extra": "^8.1",
 		"mongodb": "^3.6",
+		"mongodb-client-encryption": "^1.2.5",
 		"xlsx": "^0.17"
 	},
 	"devDependencies": {

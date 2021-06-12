@@ -9,7 +9,8 @@ const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = "style-loader";
 
 const config = {
-	entry: "./src/index.ts",
+	entry: "./src/main.ts",
+	target: "electron-main",
 	devtool: "inline-source-map",
 	output: {
 		filename: "main.js",
@@ -23,8 +24,9 @@ const config = {
 		rules: [
 			{
 				test: /\.(ts|tsx)$/i,
-				loader: "ts-loader",
-				exclude: ["/node_modules/"],
+				include: path.resolve(__dirname, "src"),
+				exclude: path.resolve(__dirname, "node_modules"),
+				use: [{ loader: "ts-loader" }],
 			},
 			{
 				test: /\.css$/i,
@@ -32,6 +34,7 @@ const config = {
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+				include: path.resolve(__dirname, "src"),
 				type: "asset",
 			},
 
