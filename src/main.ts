@@ -18,11 +18,11 @@ app.on("ready", async () => {
 			enableRemoteModule: false,
 			preload: path.join(__dirname, "preload.js"),
 		},
-		show: false,
+		//show: false,
 	});
 	win.setMenuBarVisibility(false);
 	await win.loadFile(path.join(__dirname, "view/index.html"));
-	win.on("ready-to-show", () => win.show()); //TODO: Add startup loader instead.
+	//win.on("ready-to-show", () => win.show()); //TODO: Add startup loader instead.
 });
 
 app.on("window-all-closed", () => {
