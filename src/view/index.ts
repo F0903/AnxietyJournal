@@ -1,12 +1,17 @@
 // TOP FUNCTIONS ARE CALLED FROM HTML
+//TODO: Fix the null body error with webpack.
+console.log(window);
+console.log(document);
+console.log(document.body);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function OnLoad() {
+window.document.body.onload = () => {
+	console.log("body");
 	document.querySelectorAll(".input-box").forEach((x) => {
 		const elem = x as HTMLElement;
 		elem.innerText = elem.getAttribute("placeholder") ?? "";
 	});
-}
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function OnLink(elem: HTMLElement) {

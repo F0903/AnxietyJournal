@@ -3,11 +3,10 @@
 	"version": "0.8.3",
 	"description": "A simple tool for taking note of your anxiety.",
 	"private": true,
-	"main": "src/main.js",
 	"scripts": {
 		"build:dev": "webpack",
 		"build:pub": "webpack --mode=production",
-		"start": "npm run build:dev && electron out/main.js",
+		"start": "npm run build:dev && electron out/src/main.js",
 		"package": "npm run build:pub && electron-builder",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -49,6 +48,7 @@
 		"@typescript-eslint/eslint-plugin": "*",
 		"@typescript-eslint/parser": "*",
 		"app-root-path": "^3.0",
+		"copy-webpack-plugin": "^9.0.0",
 		"electron": "^13",
 		"electron-builder": "*",
 		"eslint": "^7.27",

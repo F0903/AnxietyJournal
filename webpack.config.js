@@ -3,22 +3,29 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const copyPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
 const stylesHandler = "style-loader";
 
-const config = {
+const mainConfig = {
 	entry: "./src/main.ts",
 	target: "electron-main",
 	devtool: "inline-source-map",
 	output: {
-		filename: "main.js",
+		filename: "src/main.js",
 		path: path.resolve(__dirname, "out"),
 	},
 	plugins: [
-		// Add your plugins here
-		// Learn more about plugins from https://webpack.js.org/configuration/plugins/
+		new copyPlugin({
+			patterns: [
+				"src/*/**.html",
+				"src/*/**.css",
+				"src/*/**.js",
+				"package.json",
+			],
+		}),
 	],
 	module: {
 		rules: [
@@ -47,11 +54,57 @@ const config = {
 	},
 };
 
+const preloadConfig = {
+	entry: "./src/preload.ts",
+	target: "electron-preload",
+	devtool: "inline-source-map",
+	output: {
+		filename: "src/preload.js",
+		path: path.resolve(__dirname, "out"),
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(ts|tsx)$/i,
+				exclude: path.resolve(__dirname, "node_modules"),
+				use: [{ loader: "ts-loader" }],
+			},
+		],
+	},
+	resolve: {
+		extensions: [".tsx", ".ts", ".js"],
+	},
+};
+
+const rendererConfig = {
+	entry: "./src/view/index.ts",
+	target: "electron-renderer",
+	devtool: "inline-source-map",
+	output: {
+		filename: "src/view/index.js",
+		path: path.resolve(__dirname, "out"),
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(ts|tsx)$/i,
+				use: [{ loader: "ts-loader" }],
+			},
+		],
+	},
+	resolve: {
+		extensions: [".tsx", ".ts", ".js"],
+	},
+};
+
 module.exports = () => {
-	if (isProduction) {
-		config.mode = "production";
-	} else {
-		config.mode = "development";
+	const configs = [mainConfig, preloadConfig, rendererConfig];
+	for (const config of configs) {
+		if (isProduction) {
+			config.mode = "production";
+		} else {
+			config.mode = "development";
+		}
 	}
-	return config;
+	return configs;
 };
