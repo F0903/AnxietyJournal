@@ -9,6 +9,7 @@ let win: BrowserWindow;
 app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
+		backgroundColor: "#1e1646",
 		darkTheme: true,
 		minHeight: 700,
 		minWidth: 650,
@@ -22,7 +23,7 @@ app.on("ready", async () => {
 	});
 	win.setMenuBarVisibility(false);
 	await win.loadFile(path.join(__dirname, "view/index.html"));
-	//win.on("ready-to-show", () => win.show()); //TODO: Add startup loader instead.
+	//win.on("ready-to-show", () => win.show());
 });
 
 app.on("window-all-closed", () => {

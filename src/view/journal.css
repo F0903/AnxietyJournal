@@ -51,7 +51,7 @@
 	background-color: var(--primary-color);
 }
 
-.journal-item-close i {
+.journal-item-close svg {
 	transition-property: color;
 	transition-duration: 100ms;
 	color: var(--secondary-bg-color);

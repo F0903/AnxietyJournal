@@ -37,9 +37,6 @@ const mainConfig = {
 				include: path.resolve(__dirname, "src"),
 				type: "asset",
 			},
-
-			// Add your rules for custom modules here
-			// Learn more about loaders from https://webpack.js.org/loaders/
 		],
 	},
 	resolve: {

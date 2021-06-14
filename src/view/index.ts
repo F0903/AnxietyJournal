@@ -4,6 +4,7 @@ import {
 	InitSidebar,
 	UpdateJournalItems,
 } from "./sidebar";
+import "@fortawesome/fontawesome-free/js/all.min.js";
 
 window.onload = () => {
 	Init();

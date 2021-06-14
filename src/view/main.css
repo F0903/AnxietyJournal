@@ -78,7 +78,7 @@
 	border-radius: 25%;
 }
 
-.sidebar-button > i {
+.sidebar-button > svg {
 	--centering-offset: -1px;
 	position: relative;
 	top: calc(50% + var(--centering-offset));
@@ -363,7 +363,7 @@
 	animation: submit-animation 0.5s var(--default-timing-func) 0s;
 }
 
-.submit-button i {
+.submit-button svg {
 	align-self: center;
 	justify-self: center;
 	text-align: center;
