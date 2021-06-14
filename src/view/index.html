@@ -8,16 +8,12 @@
 			src="https://kit.fontawesome.com/cfa5b36771.js"
 			crossorigin="anonymous"
 		></script>
-		<script src="set-exports.js"></script>
 		<script src="index.js"></script>
 	</head>
 
 	<template class="journal-item-template">
 		<div class="journal-item" data-id="">
-			<div
-				class="journal-item-close"
-				onclick="OnJournalDelete(this.parentElement)"
-			>
+			<div class="journal-item-close">
 				<i class="fas fa-times"></i>
 			</div>
 			<div class="journal-item-fields">
@@ -37,15 +33,15 @@
 					<span class="sidebar-top-title">Menu</span>
 				</div>
 				<div class="sidebar-items">
-					<div class="sidebar-item" onclick="OnJournalClick()">
+					<div class="sidebar-item" id="SidebarJournal">
 						<i class="fas fa-book"></i>
 						<span>Journal</span>
 					</div>
-					<div class="sidebar-item" onclick="OnExportClick()">
+					<div class="sidebar-item" id="SidebarExport">
 						<i class="fas fa-file-export"></i>
 						<span>Export</span>
 					</div>
-					<div class="sidebar-item" onclick="OnAboutClick()">
+					<div class="sidebar-item" id="SidebarAbout">
 						<i class="fas fa-info"></i>
 						<span>About</span>
 					</div>
@@ -63,7 +59,6 @@
 							<a
 								class="text-link"
 								data-link="https://github.com/F0903/AnxietyJournal"
-								onclick="OnLink(this)"
 								>GitHub page</a
 							>
 							:)
@@ -79,14 +74,12 @@
 					<div class="exporter"></div>
 				</div>
 			</div>
-			<div class="sidebar-button" onclick="OnSidebarButtonClick()">
+			<div class="sidebar-button">
 				<i class="fas fa-bars"></i>
 			</div>
 		</div>
 		<div class="fields">
 			<div
-				onfocus="OnBoxFocus(this)"
-				onblur="OnBoxBlur(this)"
 				class="field-box input-box task-box"
 				role="textbox"
 				contenteditable="true"
@@ -96,27 +89,18 @@
 				<span role="text" class="anxiety-slider-title"
 					>How bad was your anxiety?</span
 				>
-				<input
-					oninput="OnSliderChange(this)"
-					class="anxiety-slider"
-					type="range"
-					min="0"
-					max="10"
-					value="5"
-				/>
+				<input class="anxiety-slider" type="range" min="0" max="10" value="5" />
 				<span role="text" class="anxiety-slider-value ceiling-underscore"
 					>5</span
 				>
 			</div>
 			<div
-				onfocus="OnBoxFocus(this)"
-				onblur="OnBoxBlur(this)"
 				class="field-box input-box note-box"
 				role="textbox"
 				contenteditable="true"
 				placeholder="Is there anything else you'd like to add? :)"
 			></div>
-			<div class="field submit-button" onclick="OnSubmitClick()">
+			<div class="field submit-button">
 				<i class="fas fa-check"></i>
 			</div>
 		</div>

@@ -7,8 +7,6 @@ const copyPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
-const stylesHandler = "style-loader";
-
 const mainConfig = {
 	entry: "./src/main.ts",
 	target: "electron-main",
@@ -19,12 +17,7 @@ const mainConfig = {
 	},
 	plugins: [
 		new copyPlugin({
-			patterns: [
-				"src/*/**.html",
-				"src/*/**.css",
-				"src/*/**.js",
-				"package.json",
-			],
+			patterns: ["src/*/**.html", "src/*/**.css", "package.json"],
 		}),
 	],
 	module: {
@@ -37,7 +30,7 @@ const mainConfig = {
 			},
 			{
 				test: /\.css$/i,
-				use: [stylesHandler, "css-loader"],
+				use: ["style-loader", "css-loader"],
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,

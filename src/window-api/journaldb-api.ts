@@ -2,8 +2,6 @@ import { FilterQuery } from "mongodb";
 import { IJournalDocument, JournalDocument } from "../db/journaldb";
 import { send, send_receive } from "./send-rec";
 
-export const whitelist = ["db-get-all", "db-set"];
-
 export interface IJournalDbApi {
 	get_all: <Q>(
 		colName: string,

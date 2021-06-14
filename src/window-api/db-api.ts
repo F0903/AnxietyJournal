@@ -2,8 +2,6 @@ import { FilterQuery } from "mongodb";
 import { IDbDocument } from "../db/db";
 import { send, send_receive } from "./send-rec";
 
-export const whitelist = ["db-get", "db-get-all", "db-set", "db-delete"];
-
 export interface IDbApi {
 	get: <Q>(
 		colName: string,

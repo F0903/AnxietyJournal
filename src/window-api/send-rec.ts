@@ -1,26 +1,15 @@
 import { ipcRenderer } from "electron";
-import fs from "fs-extra";
-import path from "path";
 
-const permitted_channels: Set<string> = new Set();
-let init = false;
-
-// Dynamically get whitelists from adjacent api files.
-async function initWhitelist() {
-	const dir = path.dirname(__filename);
-	const files = await fs.readdir(dir);
-	for (const file of files) {
-		if (path.extname(file) !== ".js") continue;
-		if (file === path.basename(__filename)) continue;
-		const { whitelist } = await import(path.join(dir, file));
-		(whitelist as string[]).forEach((val) => permitted_channels.add(val));
-	}
-	init = true;
-}
+const permitted_channels = [
+	"link-open",
+	"db-get",
+	"db-get-all",
+	"db-set",
+	"db-delete",
+];
 
 async function throwOnBlacklist(channel: string) {
-	if (!init) await initWhitelist();
-	if (!permitted_channels.has(channel))
+	if (!permitted_channels.includes(channel))
 		throw `Window API was accessed with channel '${channel}', which is not whitelisted.`;
 }
 
