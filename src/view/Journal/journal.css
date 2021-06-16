@@ -1,5 +1,5 @@
 .journal-grid {
-	--grid-top-padding: 20px;
+	--grid-top-padding: 25px;
 	display: flex;
 	flex-direction: column;
 	place-items: center center;
@@ -15,7 +15,7 @@
 	position: relative;
 	border: 2px solid var(--secondary-bg-color);
 	border-radius: 4px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	padding: 5px 10px;
 	min-width: 33%;
 	max-width: 85%;
@@ -33,13 +33,13 @@
 }
 
 .journal-item-close {
-	--close-x-size: 25px;
+	--close-x-size: 30px;
 	--close-size: calc(var(--close-x-size) + 8px);
 	position: absolute;
 	top: calc(-1 * var(--close-size) / 2);
 	right: calc(-1 * var(--close-size) / 2);
-	transition-property: background-color;
-	transition-duration: 200ms;
+	transition-property: filter, border, transform;
+	transition-duration: 125ms;
 	width: var(--close-size);
 	height: var(--close-size);
 	background-color: var(--tertiary-bg-color);
@@ -48,22 +48,28 @@
 }
 
 .journal-item-close:hover {
-	background-color: var(--primary-color);
+	transform: scale(1.2);
+	filter: brightness(120%);
+	border-color: var(--tertiary-bg-color);
 }
 
 .journal-item-close svg {
 	transition-property: color;
 	transition-duration: 100ms;
 	color: var(--secondary-bg-color);
-	text-align: center;
 	font-size: var(--close-x-size);
-	line-height: var(--close-size);
+	width: 100%;
+	height: 100%;
 }
 
 .journal-item-title {
 	margin: 10px 0px;
 	margin-bottom: 0px;
 	font-weight: 500;
+}
+
+.journal-item-title.underscore {
+	--underscore-width: 90%;
 }
 
 .journal-item-date {
@@ -85,6 +91,7 @@
 	font-size: 2em;
 	font-weight: 400;
 	margin-top: 6px;
+	margin-bottom: 3px;
 }
 
 .journal-item-note {

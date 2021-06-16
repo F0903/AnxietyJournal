@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="main.css" />
-		<link rel="stylesheet" type="text/css" href="journal.css" />
-		<link rel="stylesheet" type="text/css" href="export.css" />
+		<link rel="stylesheet" type="text/css" href="./Journal/journal.css" />
+		<link rel="stylesheet" type="text/css" href="./Export/export.css" />
 		<script async src="./index.js"></script>
 	</head>
 
@@ -13,8 +13,8 @@
 				<i class="fas fa-times"></i>
 			</div>
 			<div class="journal-item-fields">
-				<h2 class="journal-item-title underscore">Task</h2>
-				<h4 class="journal-item-date">Date</h4>
+				<h2 class="journal-item-title">Task</h2>
+				<h4 class="journal-item-date ceiling-underscore">Date</h4>
 				<span class="journal-item-note">Note</span>
 			</div>
 			<div class="journal-item-difficulty">Diff</div>
@@ -29,15 +29,15 @@
 					<span class="sidebar-top-title">Menu</span>
 				</div>
 				<div class="sidebar-items">
-					<div class="sidebar-item" id="SidebarJournal">
+					<div class="sidebar-item clickable" id="SidebarJournal">
 						<i class="fas fa-book"></i>
 						<span>Journal</span>
 					</div>
-					<div class="sidebar-item" id="SidebarExport">
+					<div class="sidebar-item clickable" id="SidebarExport">
 						<i class="fas fa-file-export"></i>
 						<span>Export</span>
 					</div>
-					<div class="sidebar-item" id="SidebarAbout">
+					<div class="sidebar-item clickable" id="SidebarAbout">
 						<i class="fas fa-info"></i>
 						<span>About</span>
 					</div>
@@ -67,10 +67,47 @@
 				</div>
 				<div id="Export" class="sidebar-page">
 					<h1 class="sidebar-page-title underscore">Export</h1>
-					<div class="exporter"></div>
+					<div class="exporter">
+						<div class="exporter-description-container">
+							<p class="exporter-description">
+								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque
+								quo excepturi, a saepe, modi alias error, quidem laborum quaerat
+								enim corrupti tenetur eligendi ullam animi quis rem unde vel.
+								Quas?
+							</p>
+						</div>
+						<div class="exporter-format-changer-container">
+							<h3 class="exporter-format-changer-title underscore">
+								Which format would you like?
+							</h3>
+							<div class="exporter-format-changer">
+								<div class="exporter-format-changer-dropdown shown">
+									<span>Dropdown</span>
+									<i class="fas fa-chevron-down"></i>
+								</div>
+								<div class="exporter-format-changer-options-list">
+									<div
+										class="exporter-format-changer-option"
+										data-format=".ods"
+									>
+										OpenDocument (.ods)
+									</div>
+									<div
+										class="exporter-format-changer-option"
+										data-format=".xlsx"
+									>
+										Excel (.xlsx)
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="round-button exporter-button clickable">
+							<i class="fas fa-file-export"></i>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="sidebar-button">
+			<div class="sidebar-button clickable">
 				<i class="fas fa-bars"></i>
 			</div>
 		</div>
@@ -96,7 +133,7 @@
 				contenteditable="true"
 				placeholder="Is there anything else you'd like to add? :)"
 			></div>
-			<div class="field submit-button">
+			<div class="field round-button submit-button">
 				<i class="fas fa-check"></i>
 			</div>
 		</div>

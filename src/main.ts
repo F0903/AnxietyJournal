@@ -1,8 +1,10 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
+import { homedir } from "os";
 import { shell } from "electron";
 import { version } from "../package.json";
+import { exportToDirectory } from "./export/exporter";
 
 let win: BrowserWindow;
 
@@ -68,4 +70,16 @@ ipcMain.on("db-delete", async (ev, args) => {
 ipcMain.on("link-open", async (ev, args) => {
 	const link = args[0];
 	await shell.openExternal(link);
+});
+
+ipcMain.on("export-userselect", async (ev, args) => {
+	const rowCols = args[0];
+	const desktop = path.join(homedir(), "Desktop");
+	const result = await dialog.showOpenDialog(win, {
+		buttonLabel: "Select",
+		defaultPath: desktop,
+		properties: ["openDirectory"],
+	});
+	const dir = result.filePaths[0];
+	exportToDirectory(rowCols, dir);
 });

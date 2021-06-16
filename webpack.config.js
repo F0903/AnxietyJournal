@@ -15,11 +15,6 @@ const mainConfig = {
 		filename: "src/main.js",
 		path: path.resolve(__dirname, "out"),
 	},
-	plugins: [
-		new copyPlugin({
-			patterns: ["src/*/**.html", "src/*/**.css", "package.json"],
-		}),
-	],
 	module: {
 		rules: [
 			{
@@ -27,15 +22,6 @@ const mainConfig = {
 				include: path.resolve(__dirname, "src"),
 				exclude: path.resolve(__dirname, "node_modules"),
 				use: [{ loader: "ts-loader" }],
-			},
-			{
-				test: /\.css$/i,
-				use: ["style-loader", "css-loader"],
-			},
-			{
-				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-				include: path.resolve(__dirname, "src"),
-				type: "asset",
 			},
 		],
 	},
@@ -74,11 +60,25 @@ const rendererConfig = {
 		filename: "src/view/index.js",
 		path: path.resolve(__dirname, "out"),
 	},
+	plugins: [
+		new copyPlugin({
+			patterns: ["src/**/*.html", "src/**/*.css", "package.json"],
+		}),
+	],
 	module: {
 		rules: [
 			{
 				test: /\.(ts|tsx)$/i,
 				use: [{ loader: "ts-loader" }],
+			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
+			{
+				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+				include: path.resolve(__dirname, "src"),
+				type: "asset",
 			},
 		],
 	},

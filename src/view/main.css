@@ -15,31 +15,66 @@
 	cursor: pointer;
 }
 
-:where(.underscore)::after {
+.underscore {
+	--underscore-width: min(3ch, 33%);
+	--underscore-height: max(2px, 0.1em);
+}
+
+.underscore::after {
 	content: "";
-	--width: 2ch;
 	display: block;
 	position: relative;
-	left: calc(50% - var(--width) / 2);
-	width: var(--width);
-	height: 2px;
+	left: calc(50% - var(--underscore-width) / 2);
+	width: var(--underscore-width);
+	height: var(--underscore-height);
 	background-color: var(--primary-color);
 }
 
-:where(.ceiling-underscore)::after {
+.ceiling-underscore {
+	--underscore-width: 100%;
+	--underscore-height: max(2px, 0.1em);
+}
+
+.ceiling-underscore::after {
 	content: "";
-	--width: 2ch;
 	display: block;
 	position: relative;
-	width: var(--width);
-	left: calc(50% - var(--width) / 2);
+	width: var(--underscore-width);
+	left: calc(50% - var(--underscore-width) / 2);
 	bottom: calc(1em + 5px);
-	height: 2px;
+	height: var(--underscore-height);
 	background-color: var(--primary-color);
 }
 
 .text-link[data-link] {
 	text-decoration: underline;
+}
+
+.round-button {
+	transition: transform 65ms var(--default-timing-func);
+	display: flex;
+	--button-size: 70px;
+	outline: 0;
+	min-width: var(--button-size);
+	min-height: var(--button-size);
+	max-width: var(--button-size);
+	max-height: var(--button-size);
+	border: 2px solid var(--primary-color);
+	border-radius: 50%;
+	font-size: calc(70px / 2.5);
+}
+
+.round-button:hover {
+	transform: scale(1.2);
+	filter: brightness(120%);
+}
+
+.round-button svg {
+	align-self: center;
+	justify-self: center;
+	text-align: center;
+	display: block;
+	margin: auto;
 }
 
 .title {
@@ -249,6 +284,10 @@
 	z-index: -1;
 }
 
+.anxiety-slider-value.ceiling-underscore {
+	--underscore-width: 2ch;
+}
+
 .anxiety-slider {
 	--slider-border: 2px;
 	appearance: none;
@@ -286,13 +325,13 @@
 
 .anxiety-slider::before {
 	content: "0";
-	--width: 2ch;
+	--underscore-width: 2ch;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: calc(100% - 4px);
-	min-width: var(--width);
-	max-width: var(--width);
+	min-width: var(--underscore-width);
+	max-width: var(--underscore-width);
 	align-self: flex-start;
 	font: var(--primary-font);
 	text-align: center;
@@ -305,13 +344,13 @@
 
 .anxiety-slider::after {
 	content: "10";
-	--width: 2ch;
+	--underscore-width: 2ch;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: calc(100% - 4px);
-	min-width: var(--width);
-	max-width: var(--width);
+	min-width: var(--underscore-width);
+	max-width: var(--underscore-width);
 	align-self: flex-end;
 	font: var(--primary-font);
 	text-align: center;
@@ -320,25 +359,6 @@
 	border-left: var(--slider-border) solid var(--primary-color);
 	margin-left: 5px;
 	padding: 2px 4px;
-}
-
-.submit-button {
-	transition: transform 65ms var(--default-timing-func);
-	display: flex;
-	--button-size: 70px;
-	outline: 0;
-	min-width: var(--button-size);
-	min-height: var(--button-size);
-	max-width: var(--button-size);
-	max-height: var(--button-size);
-	border: 2px solid var(--primary-color);
-	border-radius: 50%;
-	font-size: calc(70px / 2.5);
-}
-
-.submit-button:hover {
-	transform: scale(1.2);
-	filter: brightness(120%);
 }
 
 @keyframes submit-animation {
@@ -359,16 +379,12 @@
 	}
 }
 
-.submit-button.submit-animation {
-	animation: submit-animation 0.5s var(--default-timing-func) 0s;
+.submit-button {
+	font-size: 25px;
 }
 
-.submit-button svg {
-	align-self: center;
-	justify-self: center;
-	text-align: center;
-	display: block;
-	margin: auto;
+.submit-button.submit-animation {
+	animation: submit-animation 0.5s var(--default-timing-func) 0s;
 }
 
 .fortune-cookie {
@@ -381,6 +397,10 @@
 	left: 50%;
 	transform: translateX(-50%);
 	width: max-content;
+	background-color: var(--primary-bg-color);
+	padding: 15px;
+	border-radius: 50vh;
+	z-index: 10;
 }
 
 .fortune-cookie-text {

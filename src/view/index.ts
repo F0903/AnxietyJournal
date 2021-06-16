@@ -1,10 +1,8 @@
 import { SummonFortune } from "./fortune";
-import {
-	GetActiveSidebarPage,
-	InitSidebar,
-	UpdateJournalItems,
-} from "./sidebar";
+import { InitSidebar } from "./sidebar";
 import "@fortawesome/fontawesome-free/js/all.min.js";
+
+export const onSubmit: CallableFunction[] = [];
 
 window.onload = () => {
 	Init();
@@ -97,7 +95,7 @@ async function OnSubmitClick() {
 		optionalNote: note,
 	});
 
-	if (GetActiveSidebarPage() === "Journal") await UpdateJournalItems();
+	onSubmit.forEach((fn) => fn());
 }
 
 function OnSliderChange(slider: HTMLInputElement) {

@@ -1,0 +1,81 @@
+.exporter-container {
+	display: flex;
+}
+
+.exporter {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	place-items: center center;
+	margin: auto;
+	padding-bottom: 40px;
+	border: 2px solid var(--secondary-bg-color);
+	border-radius: 4px;
+	width: fit-content;
+	max-width: 70%;
+	height: fit-content;
+}
+
+.exporter-description-container {
+	margin: 0px 10px;
+	text-align: center;
+}
+
+.exporter-format-changer-container {
+	display: flex;
+	flex-direction: column;
+	place-items: center center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.exporter-format-changer-title {
+	text-align: center;
+	margin: 3px 0px;
+	margin-bottom: 10px;
+}
+
+.exporter-format-changer {
+	cursor: pointer;
+	padding: 5px;
+	border: 2px solid var(--secondary-bg-color);
+	border-radius: 4px;
+	font-size: 1.1rem;
+}
+
+.exporter-format-changer-dropdown {
+	display: none;
+}
+
+.exporter-format-changer-dropdown.shown {
+	display: inline-block;
+}
+
+.exporter-format-changer-options-list {
+	display: none;
+}
+
+.exporter-format-changer-options-list.shown {
+	display: flex;
+	flex-direction: column;
+	place-items: flex-start center;
+}
+
+.exporter-format-changer-option:hover {
+	filter: brightness(120%);
+}
+
+.exporter-format-changer li:hover {
+	cursor: pointer;
+}
+
+.exporter-button {
+	position: absolute;
+	top: calc(100% - var(--button-size) / 2);
+	background-color: var(--tertiary-bg-color);
+	border-color: var(--secondary-bg-color);
+}
+
+.exporter-button:hover {
+	border: 0px;
+}

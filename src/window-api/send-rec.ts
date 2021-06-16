@@ -6,6 +6,7 @@ const permitted_channels = [
 	"db-get-all",
 	"db-set",
 	"db-delete",
+	"export-userselect",
 ];
 
 async function throwOnBlacklist(channel: string) {
