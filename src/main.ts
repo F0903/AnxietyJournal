@@ -74,6 +74,7 @@ ipcMain.on("link-open", async (ev, args) => {
 
 ipcMain.on("export-userselect", async (ev, args) => {
 	const rowCols = args[0];
+	const format = args[1];
 	const desktop = path.join(homedir(), "Desktop");
 	const result = await dialog.showOpenDialog(win, {
 		buttonLabel: "Select",
@@ -81,5 +82,5 @@ ipcMain.on("export-userselect", async (ev, args) => {
 		properties: ["openDirectory"],
 	});
 	const dir = result.filePaths[0];
-	exportToDirectory(rowCols, dir);
+	exportToDirectory(rowCols, dir, format);
 });
