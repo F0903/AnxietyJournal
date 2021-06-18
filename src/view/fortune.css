@@ -1,0 +1,27 @@
+.fortune-cookie {
+	--font-size: 18px;
+	transition: top 1s var(--default-timing-func);
+	animation: fortune-cookie-animation 1s var(--default-timing-func) 0s;
+	display: block;
+	position: fixed;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: max-content;
+	background-color: var(--primary-bg-color);
+	padding: 15px;
+	border-radius: 50vh;
+	z-index: 10;
+}
+
+.fortune-cookie-text {
+	color: var(--primary-color);
+	font: var(--primary-font);
+	font-weight: 400;
+	font-size: var(--font-size);
+	text-align: center;
+}
+
+.fortune-cookie.shown {
+	top: 90%;
+}

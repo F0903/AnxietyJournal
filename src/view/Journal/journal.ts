@@ -1,4 +1,4 @@
-import { SetSidebarPage } from "../sidebar";
+import { SetSidebarPage } from "../sidebar/sidebar";
 import { onSubmit } from "../index";
 
 export default function InitJournal(): void {

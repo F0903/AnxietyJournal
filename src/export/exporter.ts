@@ -1,5 +1,5 @@
 import { writeFile, utils } from "xlsx";
-import { ExportFormat } from "../models/exportformat";
+import { ExportFormat } from "../models/export-format";
 import path from "path";
 
 export async function exportToDirectory(

@@ -1,5 +1,5 @@
 import { SummonFortune } from "./fortune";
-import { InitSidebar } from "./sidebar";
+import { InitSidebar } from "./sidebar/sidebar";
 import "@fortawesome/fontawesome-free/js/all.min.js";
 
 export const onSubmit: CallableFunction[] = [];

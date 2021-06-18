@@ -1,6 +1,6 @@
-import InitAbout from "./About/about";
-import InitExport from "./Export/export";
-import InitJournal from "./Journal/journal";
+import InitAbout from "../About/about";
+import InitExport from "../Export/export";
+import InitJournal from "../Journal/journal";
 
 export function GetActiveSidebarPage(
 	cachedContainer?: HTMLDivElement

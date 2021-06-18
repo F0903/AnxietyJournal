@@ -1,4 +1,4 @@
-import { ExportFormat } from "../models/exportformat";
+import { ExportFormat } from "../models/export-format";
 import { send } from "./send-rec";
 
 export interface IExportApi {

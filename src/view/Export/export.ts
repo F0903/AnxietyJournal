@@ -1,7 +1,8 @@
-import { SetSidebarPage } from "../sidebar";
-import { ExportFormat } from "../../models/exportformat";
+import { SetSidebarPage } from "../sidebar/sidebar";
+import { ExportFormat } from "../../models/export-format";
 
 let currentFormat: ExportFormat = ExportFormat.ods;
+let dropdown: HTMLElement;
 let dropdownIconContainer: HTMLElement;
 let dropdownList: HTMLElement;
 
@@ -42,7 +43,7 @@ export default function InitExport(): void {
 		)
 	);
 
-	const dropdown = document.querySelector(
+	dropdown = document.querySelector(
 		".exporter-format-changer-dropdown"
 	) as HTMLElement;
 	dropdown.addEventListener("click", OnDropdownClick);
@@ -87,6 +88,7 @@ function OnDropdownSelect(option: HTMLElement) {
 }
 
 function ToggleDropdown() {
+	dropdown.classList.toggle("expanded");
 	dropdownIconContainer.classList.toggle("rotate-half");
 	dropdownList.classList.toggle("shown");
 }

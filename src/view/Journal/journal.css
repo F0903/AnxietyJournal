@@ -38,7 +38,7 @@
 	position: absolute;
 	top: calc(-1 * var(--close-size) / 2);
 	right: calc(-1 * var(--close-size) / 2);
-	transition-property: filter, border, transform;
+	transition-property: color, border, transform;
 	transition-duration: 125ms;
 	width: var(--close-size);
 	height: var(--close-size);
@@ -49,7 +49,7 @@
 
 .journal-item-close:hover {
 	transform: scale(1.2);
-	filter: brightness(120%);
+	color: var(--primary-color-hover);
 	border-color: var(--tertiary-bg-color);
 }
 

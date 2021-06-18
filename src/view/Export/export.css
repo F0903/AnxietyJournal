@@ -40,22 +40,52 @@
 }
 
 .exporter-format-changer {
-	cursor: pointer;
-	padding: 5px;
-	border: 2px solid var(--secondary-bg-color);
+	--format-changer-border-width: 2px;
+	--format-changer-child-padding: 5px;
+	border: var(--format-changer-border-width) solid var(--secondary-bg-color);
 	border-radius: 4px;
-	font-size: 1.1rem;
+	font-size: 1rem;
+	width: fit-content;
+	height: fit-content;
+	overflow: hidden;
+}
+
+.exporter-format-changer > * {
+	padding: var(--format-changer-child-padding);
 }
 
 .exporter-format-changer-dropdown {
-	display: none;
+	--underscore-width: 0%;
+	--underscore-color: var(--secondary-bg-color);
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	place-items: center center;
+	place-content: center center;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	user-select: none;
+	text-align: center;
 }
 
-.exporter-format-changer-dropdown.shown {
-	display: inline-block;
+.exporter-format-changer-dropdown.expanded {
+	--underscore-width: 100%;
+	--underscore-height: var(--format-changer-border-width);
+	margin-bottom: 10px;
+}
+
+.exporter-format-changer-dropdown.underscore::after {
+	position: absolute;
+	bottom: -2px;
+}
+
+.exporter-format-changer-dropdown:hover {
+	color: var(--primary-color-hover);
 }
 
 .exporter-format-changer-dropdown-icon-container {
+	margin-left: 5px;
 	display: inline-block;
 }
 
@@ -69,12 +99,36 @@
 	place-items: flex-start center;
 }
 
-.exporter-format-changer-options-list.shown.ceiling-underscore {
-	--underscore-width: 95%;
+.exporter-format-changer-options-list:nth-child(1) {
+	margin-top: 3px;
+}
+
+.exporter-format-changer-option {
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+}
+
+.exporter-format-changer-option + .exporter-format-changer-option {
+	--option-sibling-margin: 15px;
+	position: relative;
+	margin-top: var(--option-sibling-margin);
+}
+
+.exporter-format-changer-option + .exporter-format-changer-option::after {
+	content: "";
+	--width: 50%;
+	display: block;
+	position: absolute;
+	top: calc(-1 * var(--option-sibling-margin) / 2);
+	left: calc(var(--width) / 2);
+	width: var(--width);
+	height: 2px;
+	background-color: var(--secondary-bg-color);
 }
 
 .exporter-format-changer-option:hover {
-	filter: brightness(120%);
+	color: var(--primary-color-hover);
 }
 
 .exporter-format-changer li:hover {
