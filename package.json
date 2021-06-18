@@ -1,6 +1,7 @@
 {
 	"name": "anxietyjournal",
 	"version": "0.9.0",
+	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",
 	"repository": {
@@ -8,6 +9,7 @@
 		"type": "git"
 	},
 	"private": true,
+	"license": "ISC",
 	"scripts": {
 		"build:dev": "webpack",
 		"build:pub": "webpack --mode=production",
@@ -42,8 +44,6 @@
 			]
 		}
 	},
-	"author": "",
-	"license": "ISC",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.15.3",
 		"fs-extra": "^8.1",
