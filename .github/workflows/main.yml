@@ -5,7 +5,6 @@ name: CI
 # Controls when the action will run. 
 on:
   workflow_dispatch:
-  page_build:
   release:
     types: # This configuration does not affect the page_build event above
       - created
@@ -41,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
-          path: ./bin/*.*
+          path: ./bin/squirrel-windows
