@@ -5,7 +5,7 @@ import { shell } from "electron";
 import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
 import { GetDesktopDir } from "./utils/path-util";
-import { setupShortcut, removeShortcut } from "./utils/install-helper";
+import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
 
 let win: BrowserWindow;
 
@@ -15,7 +15,7 @@ function handleSquirrelStartupEvent() {
 	const squirrelCmd = process.argv[1];
 	switch (squirrelCmd) {
 		case "--squirrel-firstrun":
-			setupShortcut();
+			setupShortcuts();
 			return false; // Don't exit on first run.
 
 		case "--squirrel-install":
@@ -24,7 +24,7 @@ function handleSquirrelStartupEvent() {
 			return true;
 
 		case "--squirrel-uninstall":
-			removeShortcut();
+			removeShortcuts();
 			return true;
 
 		case "--squirrel-obsolete":
