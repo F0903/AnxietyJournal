@@ -8,6 +8,34 @@ import { exportToDirectory } from "./export/exporter";
 
 let win: BrowserWindow;
 
+function handleSquirrelStartupEvent() {
+	if (process.platform !== "win32") return false;
+
+	const squirrelCmd = process.argv[1];
+	switch (squirrelCmd) {
+		case "--squirrel-install":
+		case "--squirrel-updated":
+			// Insert things to when updated.
+			app.quit();
+			return true;
+
+		case "--squirrel-uninstall":
+			// Undo the things above.
+			app.quit();
+			return true;
+
+		case "--squirrel-obsolete":
+			// This gets called on the outgoing version of the app.
+			app.quit();
+			return true;
+
+		default:
+			throw new Error("Unknown squirrel switch.");
+	}
+}
+
+if (handleSquirrelStartupEvent()) app.quit();
+
 app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
