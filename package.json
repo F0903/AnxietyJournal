@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.9.3",
+	"version": "0.9.4",
 	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",
@@ -36,7 +36,6 @@
 			]
 		},
 		"squirrelWindows": {
-			"iconUrl": "https://github.com/F0903/AnxietyJournal/blob/master/build-resources/icon.ico?raw=true",
 			"remoteReleases": true
 		},
 		"linux": {

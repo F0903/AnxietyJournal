@@ -1,16 +1,13 @@
 import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
-import { homedir } from "os";
 import { shell } from "electron";
 import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
+import { GetDesktopDir } from "./utils/path-util";
+import { setupShortcut, removeShortcut } from "./utils/install-helper";
 
 let win: BrowserWindow;
-
-//TEMP
-import { writeFileSync } from "fs-extra";
-writeFileSync(path.join(homedir(), "Desktop", "debug.txt"), __dirname);
 
 function handleSquirrelStartupEvent() {
 	if (process.platform !== "win32") return false;
@@ -18,7 +15,7 @@ function handleSquirrelStartupEvent() {
 	const squirrelCmd = process.argv[1];
 	switch (squirrelCmd) {
 		case "--squirrel-firstrun":
-			// Insert things to do on first run.
+			setupShortcut();
 			return false; // Don't exit on first run.
 
 		case "--squirrel-install":
@@ -27,7 +24,7 @@ function handleSquirrelStartupEvent() {
 			return true;
 
 		case "--squirrel-uninstall":
-			// Undo the things above.
+			removeShortcut();
 			return true;
 
 		case "--squirrel-obsolete":
@@ -105,7 +102,7 @@ ipcMain.on("link-open", async (ev, args) => {
 ipcMain.on("export-userselect", async (ev, args) => {
 	const rowCols = args[0];
 	const format = args[1];
-	const desktop = path.join(homedir(), "Desktop");
+	const desktop = GetDesktopDir();
 	const result = await dialog.showOpenDialog(win, {
 		buttonLabel: "Select",
 		defaultPath: desktop,
