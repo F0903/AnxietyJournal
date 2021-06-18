@@ -12,7 +12,7 @@ export function setupShortcut(): void {
 	createDesktopShortcut({
 		windows: { filePath: path },
 		linux: { filePath: path },
-		mac: { filePath: path },
+		osx: { filePath: path },
 	});
 }
 
