@@ -36,6 +36,7 @@
 			]
 		},
 		"squirrelWindows": {
+			"iconUrl": "https://github.com/F0903/AnxietyJournal/blob/master/build-resources/icon.ico?raw=true",
 			"remoteReleases": true
 		},
 		"linux": {
