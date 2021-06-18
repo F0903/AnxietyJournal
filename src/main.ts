@@ -8,29 +8,31 @@ import { exportToDirectory } from "./export/exporter";
 
 let win: BrowserWindow;
 
+//TEMP
+import { writeFileSync } from "fs-extra";
+writeFileSync(path.join(homedir(), "Desktop", "debug.txt"), __dirname);
+
 function handleSquirrelStartupEvent() {
 	if (process.platform !== "win32") return false;
 
 	const squirrelCmd = process.argv[1];
 	switch (squirrelCmd) {
+		case "--squirrel-firstrun":
+			// Insert things to do on first run.
+			return false; // Don't exit on first run.
+
 		case "--squirrel-install":
 		case "--squirrel-updated":
 			// Insert things to when updated.
-			app.quit();
 			return true;
 
 		case "--squirrel-uninstall":
 			// Undo the things above.
-			app.quit();
 			return true;
 
 		case "--squirrel-obsolete":
 			// This gets called on the outgoing version of the app.
-			app.quit();
 			return true;
-
-		default:
-			throw new Error("Unknown squirrel switch.");
 	}
 }
 

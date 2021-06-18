@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.9.1",
+	"version": "0.9.3",
 	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",
@@ -27,6 +27,7 @@
 			}
 		],
 		"directories": {
+			"buildResources": "./build-resources/",
 			"output": "./bin/"
 		},
 		"win": {
@@ -35,7 +36,7 @@
 			]
 		},
 		"squirrelWindows": {
-			"iconUrl": "https://github.com/F0903/AnxietyJournal/blob/master/media/AnxietyJournal.ico",
+			"iconUrl": "https://github.com/F0903/AnxietyJournal/blob/master/build-resources/icon.ico?raw=true",
 			"remoteReleases": true
 		},
 		"linux": {
@@ -45,10 +46,13 @@
 		}
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-free": "^5.15.3",
+		"@fortawesome/fontawesome-free": "^5.15",
+		"create-desktop-shortcuts": "^1.5",
 		"fs-extra": "^8.1",
+		"i": "^0.3",
 		"mongodb": "^3.6",
-		"mongodb-client-encryption": "^1.2.5",
+		"mongodb-client-encryption": "^1.2",
+		"npm": "^7.18",
 		"xlsx": "^0.17"
 	},
 	"devDependencies": {
@@ -58,20 +62,20 @@
 		"@typescript-eslint/eslint-plugin": "*",
 		"@typescript-eslint/parser": "*",
 		"app-root-path": "^3.0",
-		"copy-webpack-plugin": "^9.0.0",
-		"css-loader": "^5.2.6",
+		"copy-webpack-plugin": "^9.0",
+		"css-loader": "^5.2",
 		"electron": "^13",
-		"electron-builder": "*",
-		"electron-builder-squirrel-windows": "^22.11.7",
+		"electron-builder": "^22",
+		"electron-builder-squirrel-windows": "^22",
 		"eslint": "^7.27",
 		"eslint-config-prettier": "^8.3",
-		"html-minimizer-webpack-plugin": "^3.1.0",
-		"mini-css-extract-plugin": "^1.6.0",
+		"html-minimizer-webpack-plugin": "^3.1",
+		"mini-css-extract-plugin": "^1.6",
 		"prettier": "^2.3",
-		"style-loader": "^2.0.0",
-		"ts-loader": "^9.2.3",
-		"typescript": "^4.3.2",
-		"webpack": "^5.38.1",
-		"webpack-cli": "^4.7.2"
+		"style-loader": "^2.0",
+		"ts-loader": "^9.2",
+		"typescript": "^4.3",
+		"webpack": "^5.38",
+		"webpack-cli": "^4.7"
 	}
 }
