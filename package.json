@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.9.4",
+	"version": "0.9.5",
 	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",
@@ -47,7 +47,6 @@
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.15",
-		"create-desktop-shortcuts": "^1.5",
 		"fs-extra": "^8.1",
 		"i": "^0.3",
 		"mongodb": "^3.6",

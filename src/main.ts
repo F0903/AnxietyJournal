@@ -36,6 +36,10 @@ function handleSquirrelStartupEvent() {
 if (handleSquirrelStartupEvent()) app.quit();
 
 app.on("ready", async () => {
+	// TEMP
+	setupShortcuts(); //TODO: MAKE SHORTCUTS WORK
+	console.log("Hello");
+
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
