@@ -4,7 +4,7 @@ import path from "path";
 import { shell } from "electron";
 import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
-import { GetDesktopDir } from "./utils/path-util";
+import { getDesktopDir } from "./utils/path-util";
 import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
 
 let win: BrowserWindow;
@@ -36,10 +36,6 @@ function handleSquirrelStartupEvent() {
 if (handleSquirrelStartupEvent()) app.quit();
 
 app.on("ready", async () => {
-	// TEMP
-	setupShortcuts(); //TODO: MAKE SHORTCUTS WORK
-	console.log("Hello");
-
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
@@ -106,7 +102,7 @@ ipcMain.on("link-open", async (ev, args) => {
 ipcMain.on("export-userselect", async (ev, args) => {
 	const rowCols = args[0];
 	const format = args[1];
-	const desktop = GetDesktopDir();
+	const desktop = getDesktopDir();
 	const result = await dialog.showOpenDialog(win, {
 		buttonLabel: "Select",
 		defaultPath: desktop,
