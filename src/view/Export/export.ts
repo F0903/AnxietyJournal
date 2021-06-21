@@ -1,5 +1,5 @@
 import { SetSidebarPage } from "../sidebar/sidebar";
-import { ExportFormat } from "../../models/export-format";
+import { ExportFormat } from "../../export/export-format";
 
 let currentFormat: ExportFormat = ExportFormat.ods;
 let dropdown: HTMLElement;
