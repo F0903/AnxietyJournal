@@ -1,17 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. 
 on:
   workflow_dispatch:
   release:
-    types: # This configuration does not affect the page_build event above
-      - created
+    types: [unpublished]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
     strategy:
       matrix:
@@ -20,13 +14,10 @@ jobs:
     
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
       - name: Setup
         uses: actions/setup-node@v2
         
@@ -40,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
-          path: ./bin/squirrel-windows
+          path: ./bin/squirrel-windows/*
