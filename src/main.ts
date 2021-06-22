@@ -11,7 +11,6 @@ let win: BrowserWindow;
 
 function handleSquirrelStartupEvent() {
 	if (process.platform !== "win32") return false;
-
 	const squirrelCmd = process.argv[1];
 	switch (squirrelCmd) {
 		case "--squirrel-firstrun":

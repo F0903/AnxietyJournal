@@ -2,3 +2,5 @@ data
 media
 node_modules
 out
+bin
+LICENSE
