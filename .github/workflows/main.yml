@@ -11,7 +11,7 @@ jobs:
       matrix:
         os: [windows-latest]
     runs-on: ${{ matrix.os }}
-    
+
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -20,15 +20,15 @@ jobs:
 
       - name: Setup
         uses: actions/setup-node@v2
-        
+
       - name: Restore
         run: npm i
-        
+
       - name: Build & Package
         run: npm run package
-        
+
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }} #TODO: Make it build for linux as well.
-          path: ./bin/squirrel-windows/*
+          path: ./bin/squirrel-windows/*.exe
