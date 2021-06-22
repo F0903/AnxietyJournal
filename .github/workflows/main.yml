@@ -2,8 +2,7 @@ name: CI
 
 on:
   workflow_dispatch:
-  release:
-    types: [unpublished]
+  push:
 
 jobs:
   build:
@@ -31,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }} #TODO: Make it build for linux as well.
-          path: ./bin/squirrel-windows/*.exe
+          path: ./bin/squirrel-windows/
