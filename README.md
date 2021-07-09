@@ -6,4 +6,4 @@
 
 A simple tool for taking note of when you are anxious, or journaling anxiety-provoking events.
 
-You can find the latest installer under the releases tab :)
+You can find the latest stable installer under the releases tab, or the latest unstable under the most recent CI action. :)
