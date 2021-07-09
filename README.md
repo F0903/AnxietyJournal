@@ -1,4 +1,4 @@
-![Logo](https://github.com/F0903/AnxietyJournal/blob/master/.github/media/AnxietyJournal%20Logo.png)
+![Logo](https://github.com/F0903/AnxietyJournal/blob/master/.github/media/AnxietyJournal%20Logo%205050.png)
 
 # AnxietyJournal
 
