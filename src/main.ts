@@ -7,6 +7,8 @@ import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
 
+//TODO: Improve app startup time.
+
 let win: BrowserWindow;
 
 function handleSquirrelStartupEvent() {

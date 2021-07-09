@@ -1,5 +1,6 @@
 .sidebar-container {
 	--sidebar-width: 160px;
+	--sidepar-page-height: 60px;
 }
 
 .sidebar-button {
@@ -126,7 +127,12 @@
 }
 
 .sidebar-page-title {
-	font-size: 1.8rem;
+	--title-margin: calc(var(--sidepar-page-height) / 2);
+	--underscore-height: 3px;
+	margin: calc(var(--title-margin) / 2) 0px;
+	font-size: calc(
+		var(--sidepar-page-height) - var(--underscore-height) - var(--title-margin)
+	);
 	text-align: center;
 }
 

@@ -1,12 +1,12 @@
 .journal-grid {
-	--grid-top-padding: 25px;
+	--grid-top-padding: 0px;
 	display: flex;
 	flex-direction: column;
 	place-items: center center;
 	padding-top: var(--grid-top-padding);
 	width: 100%;
 
-	height: calc(100% - 97px);
+	height: calc(100% - var(--sidepar-page-height));
 	overflow-y: scroll;
 	overflow-x: visible;
 }
@@ -22,14 +22,18 @@
 	text-align: center;
 }
 
-.journal-item-fields {
-	display: flex;
-	flex-direction: column;
-	place-items: center flex-start;
+.journal-item:first-child {
+	margin-top: 20px;
 }
 
 .journal-item > * {
 	border-bottom: 3px;
+}
+
+.journal-item-fields {
+	display: flex;
+	flex-direction: column;
+	place-items: center flex-start;
 }
 
 .journal-item-close {
