@@ -1,6 +1,4 @@
-![Logo](https://github.com/F0903/AnxietyJournal/blob/master/.github/media/AnxietyJournal%20Logo%205050.png)
-
-# AnxietyJournal
+# AnxietyJournal ![Logo](https://github.com/F0903/AnxietyJournal/blob/master/.github/media/AnxietyJournal%20Logo%205050.png)
 
 [![CI](https://github.com/F0903/AnxietyJournal/actions/workflows/main.yml/badge.svg)](https://github.com/F0903/AnxietyJournal/actions/workflows/main.yml)
 
