@@ -7,6 +7,3 @@
 A simple tool for taking note of when you are anxious, or journaling anxiety-provoking events.
 
 You can find the latest installer under the releases tab :)
-
-NOTE:
-As of writing, the CI will always fail due to a (possible) bug in a library it is using. The app does actually work and run fine. 
