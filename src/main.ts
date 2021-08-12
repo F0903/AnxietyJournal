@@ -9,7 +9,7 @@ import { autoUpdater } from "electron-updater";
 
 //TODO: Improve app startup time.
 
-let win: BrowserWindow;
+let win: BrowserWindow; // Global handle to window so it doesn't get GC'ed
 
 function update() {
 	autoUpdater.checkForUpdatesAndNotify();
@@ -20,6 +20,7 @@ app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
+		frame: false,
 		darkTheme: true,
 		minHeight: 700,
 		minWidth: 700,
