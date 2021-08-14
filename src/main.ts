@@ -24,12 +24,9 @@ function autoUpdate() {
 		console.log("Found available update")
 	);
 
-	autoUpdater.addListener(
-		"update-downloaded",
-		(ev, relNotes, relName, relDate) => {
-			console.log(`Downloaded update ${relName}`);
-		}
-	);
+	autoUpdater.addListener("update-downloaded", (ev, relNotes, relName) => {
+		console.log(`Downloaded update ${relName}`);
+	});
 }
 
 function handleSquirrelStartupEvent() {
