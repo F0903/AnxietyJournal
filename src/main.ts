@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from "electron";
+import { app, BrowserWindow, ipcMain, dialog, autoUpdater } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
 import { shell } from "electron";
@@ -9,7 +9,28 @@ import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
 
 //TODO: Improve app startup time.
 
+const squirrelUrl = "http://localhost:3333";
+
 let win: BrowserWindow;
+
+function autoUpdate() {
+	autoUpdater.setFeedURL({ url: `${squirrelUrl}/win64/` });
+
+	autoUpdater.addListener("checking-for-update", () =>
+		console.log("Checking for updates...")
+	);
+
+	autoUpdater.addListener("update-available", () =>
+		console.log("Found available update")
+	);
+
+	autoUpdater.addListener(
+		"update-downloaded",
+		(ev, relNotes, relName, relDate) => {
+			console.log(`Downloaded update ${relName}`);
+		}
+	);
+}
 
 function handleSquirrelStartupEvent() {
 	if (process.platform !== "win32") return false;
@@ -54,6 +75,7 @@ app.on("ready", async () => {
 	win.on("ready-to-show", () => win.show());
 	win.setMenuBarVisibility(false);
 	await win.loadFile(path.join(__dirname, "view/index.html"));
+	if (process.env.NODE_ENV !== "dev") autoUpdate();
 });
 
 app.on("window-all-closed", () => {
