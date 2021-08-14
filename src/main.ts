@@ -6,6 +6,7 @@ import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
+import { writeFileSync } from "fs";
 
 //TODO: Improve app startup time.
 
@@ -14,6 +15,8 @@ const squirrelUrl = "http://localhost:3333";
 let win: BrowserWindow;
 
 function autoUpdate() {
+	writeFileSync("./debug.txt", "Hello there");
+
 	autoUpdater.setFeedURL({ url: `${squirrelUrl}/win64/` });
 
 	autoUpdater.addListener("checking-for-update", () =>
@@ -60,7 +63,7 @@ app.on("ready", async () => {
 		backgroundColor: "#1e1646",
 		darkTheme: true,
 		minHeight: 700,
-		minWidth: 650,
+		minWidth: 700,
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
