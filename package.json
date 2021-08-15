@@ -54,7 +54,6 @@
 		"i": "^0.3",
 		"mongodb": "^3.6",
 		"mongodb-client-encryption": "^1.2",
-		"npm": "^7.18",
 		"update-electron-app": "github:F0903/update-electron-app",
 		"xlsx": "^0.17"
 	},
