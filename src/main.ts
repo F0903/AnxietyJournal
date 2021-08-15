@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog, autoUpdater } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import Database from "./db/journaldb";
 import path from "path";
 import { shell } from "electron";
@@ -6,31 +6,10 @@ import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
-import { writeFileSync } from "fs";
 
 //TODO: Improve app startup time.
 
-const squirrelUrl = "http://localhost:3333";
-
 let win: BrowserWindow;
-
-function autoUpdate() {
-	writeFileSync("./debug.txt", "Hello there");
-
-	autoUpdater.setFeedURL({ url: `${squirrelUrl}/win64/` });
-
-	autoUpdater.addListener("checking-for-update", () =>
-		console.log("Checking for updates...")
-	);
-
-	autoUpdater.addListener("update-available", () =>
-		console.log("Found available update")
-	);
-
-	autoUpdater.addListener("update-downloaded", (ev, relNotes, relName) => {
-		console.log(`Downloaded update ${relName}`);
-	});
-}
 
 function handleSquirrelStartupEvent() {
 	if (process.platform !== "win32") return false;
@@ -42,7 +21,6 @@ function handleSquirrelStartupEvent() {
 
 		case "--squirrel-install":
 		case "--squirrel-updated":
-			// Insert things to when updated.
 			return true;
 
 		case "--squirrel-uninstall":
@@ -58,6 +36,7 @@ function handleSquirrelStartupEvent() {
 if (handleSquirrelStartupEvent()) app.quit();
 
 app.on("ready", async () => {
+	console.log(app.getAppPath());
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
@@ -75,7 +54,7 @@ app.on("ready", async () => {
 	win.on("ready-to-show", () => win.show());
 	win.setMenuBarVisibility(false);
 	await win.loadFile(path.join(__dirname, "view/index.html"));
-	if (process.env.NODE_ENV !== "dev") autoUpdate();
+	(await import("update-electron-app")).default();
 });
 
 app.on("window-all-closed", () => {

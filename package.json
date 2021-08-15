@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.10.0",
+	"version": "0.10.1",
 	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",
@@ -34,6 +34,7 @@
 			"provider": "github"
 		},
 		"win": {
+			"asar": false,
 			"target": [
 				"squirrel"
 			]
@@ -55,6 +56,7 @@
 		"mongodb": "^3.6",
 		"mongodb-client-encryption": "^1.2",
 		"npm": "^7.18",
+		"update-electron-app": "github:F0903/update-electron-app",
 		"xlsx": "^0.17"
 	},
 	"devDependencies": {
