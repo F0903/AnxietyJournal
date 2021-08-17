@@ -5,14 +5,10 @@ import "@fortawesome/fontawesome-free/js/all.min.js";
 export const onSubmit: CallableFunction[] = [];
 
 window.onload = () => {
-	Init();
-};
-
-function Init() {
 	InitMain();
 	InitSidebar();
 	InitMisc();
-}
+};
 
 function InitMain() {
 	document.querySelectorAll<HTMLElement>(".input-box").forEach((x) => {
@@ -67,13 +63,6 @@ async function OnSubmitClick() {
 	const submitButton = document.querySelector(
 		"div.submit-button"
 	) as HTMLElement;
-	submitButton.classList.add("submit-animation");
-	submitButton.onanimationend = () => {
-		submitButton.classList.remove("submit-animation");
-	};
-
-	SummonFortune();
-
 	const taskBox = document.querySelector("div.task-box") as HTMLElement;
 	const task = taskBox.innerText;
 	if (task === taskBox.getAttribute("placeholder")) return;
@@ -94,6 +83,13 @@ async function OnSubmitClick() {
 		date: new Date(),
 		optionalNote: note,
 	});
+
+	submitButton.classList.add("submit-animation");
+	submitButton.onanimationend = () => {
+		submitButton.classList.remove("submit-animation");
+	};
+
+	SummonFortune();
 
 	onSubmit.forEach((fn) => fn());
 }
