@@ -1,5 +1,5 @@
 import { FilterQuery } from "mongodb";
-import { IJournalDocument, JournalDocument } from "../db/journaldb";
+import { IJournalDocument, JournalDocument } from "../db/document";
 import { send, send_receive } from "./send-rec";
 
 export interface IJournalDbApi {

@@ -1,37 +1,33 @@
-import { Db, FilterQuery, MongoClient, Collection, ObjectID } from "mongodb";
+import { FilterQuery, MongoClient, Collection, ObjectID } from "mongodb";
+import { DbDocument } from "./document";
 
 const dbUri = "mongodb://localhost:27017/";
+const defaultDbName = "AnxietyJournal";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IDbDocument {}
-
-export class DbDocument implements IDbDocument {
-	// Needs to be stored as a string. Otherwise it will be converted from an ObjectID when passed through electron IPC.
-	_id: string = new ObjectID().toHexString();
-}
-
-export default class Database {
-	protected dbName: string;
+class DB {
 	private mongo: MongoClient;
-	private db: Db;
 
 	public constructor(dbName: string) {
-		const mongo = (this.mongo = new MongoClient(dbUri + dbName, {
+		this.mongo = new MongoClient(dbUri + dbName, {
 			useUnifiedTopology: true,
-		}));
-		mongo.connect();
-		this.db = this.mongo.db();
-		this.dbName = dbName;
+		});
 	}
 
 	private async findOrCreateCol(colName: string): Promise<Collection> {
-		const cols = await this.db.collections();
+		const db = this.mongo.db();
+		const cols = await db.collections();
 		let col = cols.find((x) => x.collectionName === colName);
-		if (!col) col = await this.db.createCollection(colName);
-		return Promise.resolve(col);
+		if (!col) col = await db.createCollection(colName);
+		return col;
+	}
+
+	async connect(): Promise<void> {
+		console.log("connect");
+		await this.mongo.connect();
 	}
 
 	async close(): Promise<void> {
+		console.log("close");
 		await this.mongo.close();
 	}
 
@@ -64,5 +60,21 @@ export default class Database {
 	): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
 		await col.deleteOne(query);
+	}
+}
+
+export default class Database {
+	private static dbName: string = defaultDbName;
+
+	static setActiveDatabase(dbName: string = defaultDbName): void {
+		this.dbName = dbName;
+	}
+
+	static async do<T>(fn: (db: DB) => Promise<T>): Promise<T> {
+		const db = new DB(this.dbName);
+		await db.connect();
+		const ret = await fn(db);
+		await db.close();
+		return ret;
 	}
 }

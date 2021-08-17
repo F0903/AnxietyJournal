@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain, dialog } from "electron";
-import Database from "./db/journaldb";
+import Database from "./db/db";
 import path from "path";
 import { shell } from "electron";
 import { version } from "../package.json";
@@ -7,12 +7,15 @@ import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { autoUpdater } from "electron-updater";
 
+const isDev = !app.isPackaged;
+
 let win: BrowserWindow;
 
 function update() {
+	if (isDev) return;
 	autoUpdater.checkForUpdatesAndNotify({
 		title: "Anxiety Journal",
-		body: "An update has been found. Installation will begin on exit.",
+		body: "An update has been found. Installation will begin on exit :)",
 	});
 }
 
@@ -45,37 +48,37 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.handle("db-get", async (ev, args) => {
-	const db = new Database();
-	const colName = args[0];
-	const query = args[1];
-	const val = await db.getValue(colName, query);
-	await db.close();
-	return val;
+	return await Database.do(async (db) => {
+		const colName = args[0];
+		const query = args[1];
+		const val = await db.getValue(colName, query);
+		return val;
+	});
 });
 
 ipcMain.handle("db-get-all", async (ev, args) => {
-	const db = new Database();
-	const colName = args[0];
-	const query = args[1];
-	const val = await db.getAll(colName, query);
-	await db.close();
-	return val;
+	return await Database.do(async (db) => {
+		const colName = args[0];
+		const query = args[1];
+		const val = await db.getAll(colName, query);
+		return val;
+	});
 });
 
 ipcMain.on("db-set", async (ev, args) => {
-	const db = new Database();
-	const colName = args[0];
-	const value = args[1];
-	await db.setValue(colName, value);
-	await db.close();
+	await Database.do(async (db) => {
+		const colName = args[0];
+		const value = args[1];
+		await db.setValue(colName, value);
+	});
 });
 
 ipcMain.on("db-delete", async (ev, args) => {
-	const db = new Database();
-	const colName = args[0];
-	const value = args[1];
-	await db.deleteValue(colName, value);
-	await db.close();
+	await Database.do(async (db) => {
+		const colName = args[0];
+		const value = args[1];
+		await db.deleteValue(colName, value);
+	});
 });
 
 ipcMain.on("link-open", async (ev, args) => {

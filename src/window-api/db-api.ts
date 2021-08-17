@@ -1,5 +1,5 @@
 import { FilterQuery } from "mongodb";
-import { IDbDocument } from "../db/db";
+import { IDbDocument } from "../db/document";
 import { send, send_receive } from "./send-rec";
 
 export interface IDbApi {
