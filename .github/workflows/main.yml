@@ -29,5 +29,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.os }} #TODO: Make it build for linux as well.
-          path: ./bin/squirrel-windows/
+          name: ${{ matrix.os }} #TODO: Check build artifacts for other platforms.
+          path: ./bin/*.exe/
