@@ -5,35 +5,15 @@ import { shell } from "electron";
 import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
-import { setupShortcuts, removeShortcuts } from "./utils/install-helper";
+import { autoUpdater } from "electron-updater";
 
 //TODO: Improve app startup time.
 
 let win: BrowserWindow;
 
-function handleSquirrelStartupEvent() {
-	if (process.platform !== "win32") return false;
-	const squirrelCmd = process.argv[1];
-	switch (squirrelCmd) {
-		case "--squirrel-firstrun":
-			setupShortcuts();
-			return false; // Don't exit on first run.
-
-		case "--squirrel-install":
-		case "--squirrel-updated":
-			return true;
-
-		case "--squirrel-uninstall":
-			removeShortcuts();
-			return true;
-
-		case "--squirrel-obsolete":
-			// This gets called on the outgoing version of the app.
-			return true;
-	}
+function update() {
+	autoUpdater.checkForUpdatesAndNotify();
 }
-
-if (handleSquirrelStartupEvent()) app.quit();
 
 app.on("ready", async () => {
 	console.log(app.getAppPath());
@@ -49,12 +29,13 @@ app.on("ready", async () => {
 			enableRemoteModule: false,
 			preload: path.join(__dirname, "preload.js"),
 		},
+		paintWhenInitiallyHidden: true,
 		show: false,
 	});
 	win.on("ready-to-show", () => win.show());
 	win.setMenuBarVisibility(false);
 	await win.loadFile(path.join(__dirname, "view/index.html"));
-	(await import("update-electron-app")).default();
+	update();
 });
 
 app.on("window-all-closed", () => {

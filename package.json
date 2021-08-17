@@ -35,26 +35,21 @@
 		},
 		"win": {
 			"target": [
-				"squirrel"
+				"nsis"
 			]
 		},
 		"squirrelWindows": {
 			"iconUrl": "https://github.com/F0903/AnxietyJournal/blob/master/build-resources/icon.ico?raw=true",
 			"remoteReleases": true
-		},
-		"linux": {
-			"target": [
-				"tar.gz"
-			]
 		}
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.15",
+		"electron-updater": "^4.3.9",
 		"fs-extra": "^8.1",
 		"i": "^0.3",
 		"mongodb": "^3.6",
 		"mongodb-client-encryption": "^1.2",
-		"update-electron-app": "github:F0903/update-electron-app",
 		"xlsx": "^0.17"
 	},
 	"devDependencies": {
