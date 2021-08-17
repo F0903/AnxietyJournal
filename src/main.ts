@@ -7,8 +7,6 @@ import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { autoUpdater } from "electron-updater";
 
-//TODO: Improve app startup time.
-
 let win: BrowserWindow;
 
 function update() {
