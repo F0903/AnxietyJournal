@@ -12,7 +12,10 @@ import { autoUpdater } from "electron-updater";
 let win: BrowserWindow;
 
 function update() {
-	autoUpdater.checkForUpdatesAndNotify();
+	autoUpdater.checkForUpdatesAndNotify({
+		title: "Anxiety Journal",
+		body: "An update has been found. Installation will begin on exit.",
+	});
 }
 
 app.on("ready", async () => {
