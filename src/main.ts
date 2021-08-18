@@ -20,7 +20,6 @@ function update() {
 }
 
 app.on("ready", async () => {
-	console.log(app.getAppPath());
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
