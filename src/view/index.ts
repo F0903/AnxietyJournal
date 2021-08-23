@@ -4,11 +4,14 @@ import "@fortawesome/fontawesome-free/js/all.min.js";
 
 export const onSubmit: CallableFunction[] = [];
 
-window.onload = () => {
+window.onload = Init;
+
+function Init() {
 	InitMain();
 	InitSidebar();
 	InitMisc();
-};
+	InitControls();
+}
 
 function InitMain() {
 	document.querySelectorAll<HTMLElement>(".input-box").forEach((x) => {
@@ -44,9 +47,26 @@ function InitMisc() {
 	});
 }
 
+function InitControls() {
+	const exit = document.querySelector(".top-bar-exit") as HTMLElement;
+	exit.addEventListener("click", async () => await window.app.close());
+
+	const max = document.querySelector(".top-bar-maximize") as HTMLElement;
+	const unmaxImg = max.querySelector(".top-bar-maximize-unmax") as HTMLElement;
+	const maxImg = max.querySelector(".top-bar-maximize-max") as HTMLElement;
+	max.addEventListener("click", async () => {
+		const isMax = await window.app.toggleMaximize();
+		maxImg.classList.toggle("hidden", isMax);
+		unmaxImg.classList.toggle("hidden", !isMax);
+	});
+
+	const min = document.querySelector(".top-bar-minimize") as HTMLElement;
+	min.addEventListener("click", async () => await window.app.minimize());
+}
+
 async function OnLink(elem: HTMLLinkElement) {
 	const link = elem.getAttribute("data-link") as string;
-	await window.link.link_open(link);
+	await window.link.open(link);
 }
 
 function OnBoxFocus(elem: HTMLElement) {

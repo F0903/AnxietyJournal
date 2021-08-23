@@ -1,6 +1,9 @@
 import { ipcRenderer } from "electron";
 
 const permitted_channels = [
+	"app-close",
+	"app-min",
+	"app-toggle-max",
 	"link-open",
 	"db-get",
 	"db-get-all",

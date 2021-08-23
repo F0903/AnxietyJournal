@@ -9,13 +9,12 @@ import { autoUpdater } from "electron-updater";
 
 const isDev = !app.isPackaged;
 
-let win: BrowserWindow;
+let win: BrowserWindow; // Global handle to window so it doesn't get GC'ed
 
 function update() {
-	if (isDev) return;
 	autoUpdater.checkForUpdatesAndNotify({
 		title: "Anxiety Journal",
-		body: "An update has been found. Installation will begin on exit :)",
+		body: "An update has been found. Installation will begin on exit.",
 	});
 }
 
@@ -23,6 +22,7 @@ app.on("ready", async () => {
 	win = new BrowserWindow({
 		title: `Anxiety Journal v${version}`,
 		backgroundColor: "#1e1646",
+		frame: false,
 		darkTheme: true,
 		minHeight: 700,
 		minWidth: 700,
@@ -44,6 +44,21 @@ app.on("ready", async () => {
 app.on("window-all-closed", () => {
 	if (process.platform == "darwin") return;
 	app.quit();
+});
+
+ipcMain.on("app-close", () => {
+	app.quit();
+});
+
+ipcMain.on("app-min", () => {
+	win.minimize();
+});
+
+ipcMain.handle("app-toggle-max", () => {
+	const isMax = win.isMaximized();
+	if (isMax) win.unmaximize();
+	else win.maximize();
+	return !isMax;
 });
 
 ipcMain.handle("db-get", async (ev, args) => {

@@ -5,8 +5,8 @@
 
 .sidebar-button {
 	--button-size: 33px;
-	z-index: 2;
-	position: fixed;
+	z-index: 3;
+	position: absolute;
 	top: 10px;
 	left: 10px;
 	color: var(--primary-color);
