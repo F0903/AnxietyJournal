@@ -1,23 +1,28 @@
 @import "./misc.css";
 @import "./fortune.css";
 @import "./sidebar/sidebar.css";
+@import "./topbar.css";
 
 @import "./Journal/journal.css";
 @import "./Export/export.css";
 
 :root {
-	--primary-bg-color: hsl(250, 52%, 18%);
-	--secondary-bg-color: hsl(250, 52%, 25%);
-	--tertiary-bg-color: hsl(250, 52%, 30%);
+	--primary-bg-color: hsl(250, 52%, 20%);
+	--secondary-bg-color: hsl(250, 52%, 23%);
+	--tertiary-bg-color: hsl(250, 52%, 26%);
 
 	--scrollbar-width: 16px;
 	--scrollbar-bg-color: var(--secondary-bg-color);
 	--scrollbar-color: var(--primary-color);
 
-	--primary-color: hsl(250, 77%, 62%);
+	--primary-color: hsl(250, 77%, 60%);
 	--primary-color-hover: hsl(250, 77%, 75%);
 	--primary-font: 500 18px "Josefin Sans";
 	--default-timing-func: cubic-bezier(0.65, 0.08, 0.24, 1);
+
+	--top-bar-color: hsl(250, 52%, 17%);
+	--top-bar-control-color: hsl(250, 52%, 19%);
+	--top-bar-height: 32px;
 
 	background-color: var(--primary-bg-color);
 	font: var(--primary-font);
@@ -44,16 +49,63 @@
 	background-color: var(--primary-color-hover);
 }
 
+body {
+	margin: 0;
+}
+
+.top-bar {
+	z-index: 99;
+	top: 0px;
+	position: fixed;
+	width: 100%;
+	height: var(--top-bar-height);
+	-webkit-app-region: drag;
+}
+
+.top-bar-controls {
+	position: absolute;
+	right: 0px;
+	width: fit-content;
+	padding: 0px 10px;
+	border-bottom-left-radius: 10%;
+	height: var(--top-bar-height);
+	background-color: var(--top-bar-color);
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: flex-end;
+}
+
+.top-bar-control {
+	cursor: pointer;
+	font-size: 23px;
+	text-align: center;
+	height: 100%;
+	-webkit-app-region: no-drag;
+}
+
+.top-bar-control:hover {
+	filter: brightness(1.2);
+}
+
+.top-bar-control + .top-bar-control {
+	margin-left: 10px;
+}
+
+.app-container {
+	margin: 8;
+}
+
 .title {
 	user-select: none;
 	font-size: 3rem;
 	text-align: center;
-	background: hsl(250, 47%, 44%);
+	background: var(--primary-color);
 	background: linear-gradient(
 		0deg,
-		hsl(250, 52%, 18%) 5%,
-		hsl(250, 52%, 18%) 15%,
-		hsl(250, 50%, 28%) 35%,
+		var(--primary-bg-color) 7%,
+		var(--primary-bg-color) 16%,
+		hsl(250, 50%, 28%) 34%,
 		var(--primary-color) 100%
 	);
 	-webkit-background-clip: text;

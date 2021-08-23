@@ -22,129 +22,147 @@
 	</template>
 
 	<body>
-		<h1 class="title">Anxiety Journal</h1>
-		<div class="sidebar-container">
-			<div class="sidebar">
-				<div class="sidebar-top">
-					<span class="sidebar-top-title">Menu</span>
-				</div>
-				<div class="sidebar-items">
-					<div class="sidebar-item clickable" id="SidebarJournal">
-						<i class="fas fa-book"></i>
-						<span>Journal</span>
-					</div>
-					<div class="sidebar-item clickable" id="SidebarExport">
-						<i class="fas fa-file-export"></i>
-						<span>Export</span>
-					</div>
-					<div class="sidebar-item clickable" id="SidebarAbout">
-						<i class="fas fa-info"></i>
-						<span>About</span>
-					</div>
-				</div>
+		<div class="top-bar">
+			<div class="top-bar-controls">
+				<i class="fas fa-minus top-bar-minimize top-bar-control"></i>
+				<i class="fas fa-plus top-bar-maximize top-bar-control"></i>
+				<i class="fas fa-times top-bar-exit top-bar-control"></i>
 			</div>
-			<div class="sidebar-filler sidebar-background"></div>
-			<div class="sidebar-filler sidebar-page-container">
-				<div id="About" class="sidebar-page shown">
-					<h1 class="sidebar-page-title underscore">Hello!</h1>
-					<div class="about-description-container">
-						<p class="about-description">
-							Welcome to AnxietyJournal! I hope you find this small app useful
-							and intuitive. If you should come across any bugs, or any feature
-							ideas, don't be afraid to submit them on the
-							<a
-								class="text-link"
-								data-link="https://github.com/F0903/AnxietyJournal"
-								>GitHub page</a
-							>
-							:)
-						</p>
+		</div>
+		<div class="app-container">
+			<h1 class="title">Anxiety Journal</h1>
+			<div class="sidebar-container">
+				<div class="sidebar">
+					<div class="sidebar-top">
+						<span class="sidebar-top-title">Menu</span>
+					</div>
+					<div class="sidebar-items">
+						<div class="sidebar-item clickable" id="SidebarJournal">
+							<i class="fas fa-book"></i>
+							<span>Journal</span>
+						</div>
+						<div class="sidebar-item clickable" id="SidebarExport">
+							<i class="fas fa-file-export"></i>
+							<span>Export</span>
+						</div>
+						<div class="sidebar-item clickable" id="SidebarAbout">
+							<i class="fas fa-info"></i>
+							<span>About</span>
+						</div>
 					</div>
 				</div>
-				<div id="Journal" class="sidebar-page">
-					<h1 class="sidebar-page-title underscore">Journal</h1>
-					<div class="journal-grid"></div>
-				</div>
-				<div id="Export" class="sidebar-page">
-					<h1 class="sidebar-page-title underscore">Export</h1>
-					<div class="exporter">
-						<div class="exporter-description-container">
-							<p class="exporter-description">
-								Here you can export your journal to a format of your choosing.
-								This is used if you would like to view your journal, or perhaps
-								graph it, in something like Excel or Google Docs. For formats,
-								.xlsx is recommended for Excel and .ods for everything else :)
+				<div class="sidebar-filler sidebar-background"></div>
+				<div class="sidebar-filler sidebar-page-container">
+					<div id="About" class="sidebar-page shown">
+						<h1 class="sidebar-page-title underscore">Hello!</h1>
+						<div class="about-description-container">
+							<p class="about-description">
+								Welcome to AnxietyJournal! I hope you find this small app useful
+								and intuitive. If you should come across any bugs, or any
+								feature ideas, don't be afraid to submit them on the
+								<a
+									class="text-link"
+									data-link="https://github.com/F0903/AnxietyJournal"
+									>GitHub page</a
+								>
+								:)
 							</p>
 						</div>
-						<div class="exporter-format-changer-container">
-							<h3 class="exporter-format-changer-title underscore">
-								Which format would you like?
-							</h3>
-							<div class="exporter-format-changer">
-								<div class="exporter-format-changer-dropdown underscore">
-									<span class="exporter-format-changer-dropdown-text"
-										>Dropdown</span
-									>
-									<div class="exporter-format-changer-dropdown-icon-container">
-										<i class="fas fa-chevron-down"></i>
+					</div>
+					<div id="Journal" class="sidebar-page">
+						<h1 class="sidebar-page-title underscore">Journal</h1>
+						<div class="journal-grid"></div>
+					</div>
+					<div id="Export" class="sidebar-page">
+						<h1 class="sidebar-page-title underscore">Export</h1>
+						<div class="exporter">
+							<div class="exporter-description-container">
+								<p class="exporter-description">
+									Here you can export your journal to a format of your choosing.
+									This is used if you would like to view your journal, or
+									perhaps graph it, in something like Excel or Google Docs. For
+									formats, .xlsx is recommended for Excel and .ods for
+									everything else :)
+								</p>
+							</div>
+							<div class="exporter-format-changer-container">
+								<h3 class="exporter-format-changer-title underscore">
+									Which format would you like?
+								</h3>
+								<div class="exporter-format-changer">
+									<div class="exporter-format-changer-dropdown underscore">
+										<span class="exporter-format-changer-dropdown-text"
+											>Dropdown</span
+										>
+										<div
+											class="exporter-format-changer-dropdown-icon-container"
+										>
+											<i class="fas fa-chevron-down"></i>
+										</div>
 									</div>
-								</div>
-								<div class="exporter-format-changer-options-list">
-									<div
-										class="exporter-format-changer-option"
-										data-format=".ods"
-									>
-										OpenDocument (.ods)
-									</div>
-									<div
-										class="exporter-format-changer-option"
-										data-format=".xlsx"
-									>
-										Excel (.xlsx)
+									<div class="exporter-format-changer-options-list">
+										<div
+											class="exporter-format-changer-option"
+											data-format=".ods"
+										>
+											OpenDocument (.ods)
+										</div>
+										<div
+											class="exporter-format-changer-option"
+											data-format=".xlsx"
+										>
+											Excel (.xlsx)
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="round-button exporter-button clickable">
-							<i class="fas fa-file-export"></i>
+							<div class="round-button exporter-button clickable">
+								<i class="fas fa-file-export"></i>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="sidebar-button clickable">
+					<i class="fas fa-bars"></i>
+				</div>
 			</div>
-			<div class="sidebar-button clickable">
-				<i class="fas fa-bars"></i>
+			<div class="fields">
+				<div
+					class="field-box input-box task-box"
+					role="textbox"
+					contenteditable="true"
+					placeholder="What did you do today?"
+				></div>
+				<div class="field anxiety-slider-container">
+					<span role="text" class="anxiety-slider-title"
+						>How bad was your anxiety?</span
+					>
+					<input
+						class="anxiety-slider"
+						type="range"
+						min="0"
+						max="10"
+						value="5"
+					/>
+					<span role="text" class="anxiety-slider-value ceiling-underscore"
+						>5</span
+					>
+				</div>
+				<div
+					class="field-box input-box note-box"
+					role="textbox"
+					contenteditable="true"
+					placeholder="Is there anything else you'd like to add? :)"
+				></div>
+				<div class="field round-button submit-button">
+					<i class="fas fa-check"></i>
+				</div>
 			</div>
+			<footer>
+				<div class="fortune-cookie">
+					<span class="fortune-cookie-text">Test test 123</span>
+				</div>
+			</footer>
 		</div>
-		<div class="fields">
-			<div
-				class="field-box input-box task-box"
-				role="textbox"
-				contenteditable="true"
-				placeholder="What did you do today?"
-			></div>
-			<div class="field anxiety-slider-container">
-				<span role="text" class="anxiety-slider-title"
-					>How bad was your anxiety?</span
-				>
-				<input class="anxiety-slider" type="range" min="0" max="10" value="5" />
-				<span role="text" class="anxiety-slider-value ceiling-underscore"
-					>5</span
-				>
-			</div>
-			<div
-				class="field-box input-box note-box"
-				role="textbox"
-				contenteditable="true"
-				placeholder="Is there anything else you'd like to add? :)"
-			></div>
-			<div class="field round-button submit-button">
-				<i class="fas fa-check"></i>
-			</div>
-		</div>
-		<footer>
-			<div class="fortune-cookie">
-				<span class="fortune-cookie-text">Test test 123</span>
-			</div>
-		</footer>
 	</body>
 </html>
