@@ -7,8 +7,6 @@ import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { autoUpdater } from "electron-updater";
 
-const isDev = !app.isPackaged;
-
 let win: BrowserWindow; // Global handle to window so it doesn't get GC'ed
 
 function update() {
