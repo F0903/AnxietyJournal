@@ -24,9 +24,20 @@
 	<body>
 		<div class="top-bar">
 			<div class="top-bar-controls">
-				<i class="fas fa-minus top-bar-minimize top-bar-control"></i>
-				<i class="fas fa-plus top-bar-maximize top-bar-control"></i>
-				<i class="fas fa-times top-bar-exit top-bar-control"></i>
+				<div class="top-bar-minimize top-bar-control">
+					<i class="fas fa-minus"></i>
+				</div>
+				<div class="top-bar-maximize top-bar-control">
+					<div class="top-bar-maximize-max">
+						<i class="fas fa-expand"></i>
+					</div>
+					<div class="top-bar-maximize-unmax hidden">
+						<i class="fas fa-compress"></i>
+					</div>
+				</div>
+				<div class="top-bar-exit top-bar-control">
+					<i class="fas fa-times"></i>
+				</div>
 			</div>
 		</div>
 		<div class="app-container">

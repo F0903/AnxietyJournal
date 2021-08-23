@@ -2,6 +2,10 @@
 	cursor: pointer;
 }
 
+.hidden {
+	display: none;
+}
+
 .underscore {
 	--underscore-width: min(3ch, 33%);
 	--underscore-height: max(2px, 0.1em);
@@ -59,7 +63,7 @@
 
 .round-button:hover {
 	transform: scale(1.2);
-	filter: brightness(120%);
+	filter: brightness(1.6);
 }
 
 .round-button svg {

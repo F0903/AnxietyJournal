@@ -47,6 +47,21 @@ app.on("window-all-closed", () => {
 	app.quit();
 });
 
+ipcMain.on("app-close", () => {
+	app.quit();
+});
+
+ipcMain.on("app-min", () => {
+	win.minimize();
+});
+
+ipcMain.handle("app-toggle-max", () => {
+	const isMax = win.isMaximized();
+	if (isMax) win.unmaximize();
+	else win.maximize();
+	return !isMax;
+});
+
 ipcMain.handle("db-get", async (ev, args) => {
 	const db = new Database();
 	const colName = args[0];

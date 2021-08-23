@@ -1,15 +1,14 @@
 @import "./misc.css";
 @import "./fortune.css";
 @import "./sidebar/sidebar.css";
-@import "./topbar.css";
 
 @import "./Journal/journal.css";
 @import "./Export/export.css";
 
 :root {
-	--primary-bg-color: hsl(250, 52%, 20%);
-	--secondary-bg-color: hsl(250, 52%, 23%);
-	--tertiary-bg-color: hsl(250, 52%, 26%);
+	--primary-bg-color: hsl(250, 52%, 17%);
+	--secondary-bg-color: hsl(250, 52%, 20%);
+	--tertiary-bg-color: hsl(250, 52%, 23%);
 
 	--scrollbar-width: 16px;
 	--scrollbar-bg-color: var(--secondary-bg-color);
@@ -20,8 +19,7 @@
 	--primary-font: 500 18px "Josefin Sans";
 	--default-timing-func: cubic-bezier(0.65, 0.08, 0.24, 1);
 
-	--top-bar-color: hsl(250, 52%, 17%);
-	--top-bar-control-color: hsl(250, 52%, 19%);
+	--top-bar-color: hsl(250, 52%, 15%);
 	--top-bar-height: 32px;
 
 	background-color: var(--primary-bg-color);
@@ -54,7 +52,7 @@ body {
 }
 
 .top-bar {
-	z-index: 99;
+	z-index: 2;
 	top: 0px;
 	position: fixed;
 	width: 100%;
@@ -84,12 +82,20 @@ body {
 	-webkit-app-region: no-drag;
 }
 
+.top-bar-control * {
+	height: 100%;
+}
+
 .top-bar-control:hover {
-	filter: brightness(1.2);
+	filter: brightness(1.6);
 }
 
 .top-bar-control + .top-bar-control {
 	margin-left: 10px;
+}
+
+.top-bar-exit:hover {
+	color: hsl(0, 50%, 50%);
 }
 
 .app-container {
