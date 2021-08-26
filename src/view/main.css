@@ -52,10 +52,14 @@ body {
 }
 
 .top-bar {
+	--top-bar-left-offset: calc(
+		var(--sidebar-button-size) + var(--sidebar-button-corner-offset) * 2
+	);
 	z-index: 2;
 	top: 0px;
+	left: var(--top-bar-left-offset);
 	position: fixed;
-	width: 100%;
+	width: calc(100% - var(--top-bar-left-offset));
 	height: var(--top-bar-height);
 	-webkit-app-region: drag;
 }
