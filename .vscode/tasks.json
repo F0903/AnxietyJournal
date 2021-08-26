@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: start"
+		},
+		{
+			"type": "npm",
+			"script": "build:dev",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build dev"
+		},
+		{
+			"type": "npm",
+			"script": "build:pub",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build pub"
+		},
+		{
+			"type": "npm",
+			"script": "package",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: package"
+		}
+	]
+}
