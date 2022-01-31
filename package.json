@@ -1,6 +1,6 @@
 {
 	"name": "anxietyjournal",
-	"version": "0.12.1",
+	"version": "0.13.0",
 	"author": "Frederik P.",
 	"description": "A simple tool for taking note of your anxiety.",
 	"main": "src/main.js",

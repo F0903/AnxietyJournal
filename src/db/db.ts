@@ -22,12 +22,10 @@ class DB {
 	}
 
 	async connect(): Promise<void> {
-		console.log("connect");
 		await this.mongo.connect();
 	}
 
 	async close(): Promise<void> {
-		console.log("close");
 		await this.mongo.close();
 	}
 
