@@ -9,16 +9,20 @@ export default function InitJournal(): void {
 
 async function UpdateJournalItems(): Promise<void> {
 	const journal = await window.journal_db.get_all("journal", {});
+
 	const insertionNode = document.querySelector(
 		"div.journal-grid"
 	) as HTMLDivElement;
 	insertionNode.textContent = "";
+
 	const template = document.querySelector(
 		"template.journal-item-template"
 	) as HTMLTemplateElement;
+
 	journal.forEach((element) => {
 		const itemFragment = template.content.cloneNode(true) as DocumentFragment;
 		const item = itemFragment.firstChild?.nextSibling as HTMLDivElement;
+
 		const title = item.querySelector(
 			"h2.journal-item-title"
 		) as HTMLHeadingElement;
@@ -31,8 +35,10 @@ async function UpdateJournalItems(): Promise<void> {
 		const note = item.querySelector(
 			"span.journal-item-note"
 		) as HTMLSpanElement;
+
 		SetTemplateClickEvent(item);
-		item.setAttribute("data-id", element._id);
+
+		item.setAttribute("data-id", element._id.toHexString());
 		title.textContent = element.task;
 		difficulty.textContent = element.anxietyScale.toString();
 		date.textContent = element.date.toLocaleDateString();

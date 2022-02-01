@@ -16,7 +16,7 @@
 
 	--primary-color: hsl(250, 77%, 60%);
 	--primary-color-hover: hsl(250, 77%, 75%);
-	--primary-font: 500 18px "Josefin Sans";
+	--primary-font: 500 18px url("./fonts/Josefin_Sans/JosefinSans-Var.ttf");
 	--default-timing-func: cubic-bezier(0.65, 0.08, 0.24, 1);
 
 	--top-bar-color: hsl(250, 52%, 15%);

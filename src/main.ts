@@ -6,8 +6,12 @@ import { version } from "../package.json";
 import { exportToDirectory } from "./export/exporter";
 import { getDesktopDir } from "./utils/path-util";
 import { autoUpdater } from "electron-updater";
+import "mongodb";
 
-let win: BrowserWindow; // Global handle to window so it doesn't get GC'ed
+//TODO: Fix "require not defined" stemming from mongodb(?)
+//TODO: Rewrite in React or Svelte?
+
+let win: BrowserWindow; // Handle to window so it doesn't get GC'ed
 
 function update() {
 	autoUpdater.checkForUpdatesAndNotify({
@@ -27,7 +31,6 @@ app.on("ready", async () => {
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
-			enableRemoteModule: false,
 			preload: path.join(__dirname, "preload.js"),
 		},
 		paintWhenInitiallyHidden: true,

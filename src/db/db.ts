@@ -1,4 +1,4 @@
-import { FilterQuery, MongoClient, Collection, ObjectID } from "mongodb";
+import { MongoClient, Filter, Collection } from "mongodb";
 import { DbDocument } from "./document";
 
 const dbUri = "mongodb://localhost:27017/";
@@ -8,9 +8,7 @@ class DB {
 	private mongo: MongoClient;
 
 	public constructor(dbName: string) {
-		this.mongo = new MongoClient(dbUri + dbName, {
-			useUnifiedTopology: true,
-		});
+		this.mongo = new MongoClient(dbUri + dbName, { serverApi: "1" });
 	}
 
 	private async findOrCreateCol(colName: string): Promise<Collection> {
@@ -29,35 +27,35 @@ class DB {
 		await this.mongo.close();
 	}
 
-	async getValue<Q>(
+	async getValue<T>(
 		collectionName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	): Promise<DbDocument | null> {
 		const col = await this.findOrCreateCol(collectionName);
-		return col.findOne(query);
+		const res = await col.findOne(filterQuery);
+		return res;
 	}
 
-	async getAll<Q>(
+	async getAll<T>(
 		collectionName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	): Promise<readonly DbDocument[]> {
 		const col = await this.findOrCreateCol(collectionName);
-		const vals = col.find(query);
+		const vals = col.find(filterQuery);
 		return vals.toArray();
 	}
 
 	async setValue(collectionName: string, doc: DbDocument): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
-		if (!doc["_id"]) doc._id = new ObjectID().toHexString();
 		await col.updateOne({ _id: doc._id }, { $set: doc }, { upsert: true });
 	}
 
-	async deleteValue<Q>(
+	async deleteValue<T>(
 		collectionName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	): Promise<void> {
 		const col = await this.findOrCreateCol(collectionName);
-		await col.deleteOne(query);
+		await col.deleteOne(filterQuery);
 	}
 }
 

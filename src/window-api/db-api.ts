@@ -1,40 +1,43 @@
-import { FilterQuery } from "mongodb";
+import { Filter } from "mongodb";
 import { IDbDocument } from "../db/document";
 import { send, send_receive } from "./send-rec";
 
 export interface IDbApi {
-	get: <Q>(
+	get: <T>(
 		colName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	) => Promise<IDbDocument | null>;
-	get_all: <Q>(
+	get_all: <T>(
 		colName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	) => Promise<readonly IDbDocument[]>;
 	set: (colName: string, value: IDbDocument) => Promise<void>;
-	delete: <Q>(colName: string, query: FilterQuery<Q>) => Promise<void>;
+	delete: <T>(colName: string, query: Filter<T>) => Promise<void>;
 }
 
 export class DbApi implements IDbApi {
-	get = async <Q>(
+	get = async <T>(
 		colName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	): Promise<IDbDocument | null> => {
-		return send_receive("db-get", colName, query);
+		return send_receive("db-get", colName, filterQuery);
 	};
 
-	get_all = async <Q>(
+	get_all = async <T>(
 		colName: string,
-		query: FilterQuery<Q>
+		filterQuery: Filter<T>
 	): Promise<readonly IDbDocument[]> => {
-		return send_receive("db-get-all", colName, query);
+		return send_receive("db-get-all", colName, filterQuery);
 	};
 
 	set = async (colName: string, value: IDbDocument): Promise<void> => {
 		return send("db-set", colName, value);
 	};
 
-	delete = async <Q>(colName: string, query: FilterQuery<Q>): Promise<void> => {
-		return send("db-delete", colName, query);
+	delete = async <T>(
+		colName: string,
+		filterQuery: Filter<T>
+	): Promise<void> => {
+		return send("db-delete", colName, filterQuery);
 	};
 }

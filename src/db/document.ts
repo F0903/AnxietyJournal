@@ -1,14 +1,14 @@
-import { ObjectID } from "mongodb";
+import { ObjectId } from "mongodb";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IDbDocument {}
-
-export class DbDocument implements IDbDocument {
-	// Needs to be stored as a string. Otherwise it will be converted from an ObjectID when passed through electron IPC.
-	_id: string = new ObjectID().toHexString();
+export interface IDbDocument {
+	_id: ObjectId;
 }
 
-export interface IJournalDocument {
+export class DbDocument implements IDbDocument {
+	_id: ObjectId = new ObjectId();
+}
+
+export interface IJournalDocument extends IDbDocument {
 	task: string;
 	anxietyScale: number;
 	date: Date;

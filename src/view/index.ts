@@ -1,6 +1,7 @@
 import { SummonFortune } from "./fortune";
 import { InitSidebar } from "./sidebar/sidebar";
 import "@fortawesome/fontawesome-free/js/all.min.js";
+import { JournalDocument } from "../db/document";
 
 export const onSubmit: CallableFunction[] = [];
 
@@ -97,12 +98,10 @@ async function OnSubmitClick() {
 			? noteBox.innerText
 			: undefined;
 
-	await window.journal_db.set("journal", {
-		task: task,
-		anxietyScale: scale,
-		date: new Date(),
-		optionalNote: note,
-	});
+	await window.journal_db.set(
+		"journal",
+		new JournalDocument(task, scale, new Date(), note)
+	);
 
 	submitButton.classList.add("submit-animation");
 	submitButton.onanimationend = () => {
