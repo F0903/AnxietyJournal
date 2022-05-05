@@ -6,3 +6,8 @@
 A simple tool for taking note of when you are anxious, or journaling anxiety-provoking events.
 
 You can find the latest stable installer under the releases tab, or the latest unstable under the most recent CI action. :)
+
+Requires Josefin Sans font (does not want to bundle apperantly), and MongoDB server installed.
+
+NOTE:
+This project is currently being rewritten in Flutter, and therefore not being worked on.
