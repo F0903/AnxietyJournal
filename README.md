@@ -9,5 +9,4 @@ You can find the latest stable installer under the releases tab, or the latest u
 
 Requires Josefin Sans font (does not want to bundle apperantly), and MongoDB server installed.
 
-NOTE:
-This project is currently being rewritten in Flutter, and therefore not being worked on.
+This project was made to learn Electron development without any external framework (such as React), but might be rewritten in such a framework at some point.
