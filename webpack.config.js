@@ -90,8 +90,6 @@ const rendererConfig = {
 module.exports = () => {
 	const configs = [mainConfig, preloadConfig, rendererConfig];
 	for (const config of configs) {
-		config.output.hashFunction = "xxhash64"; // Workaround for webpack and node 17
-
 		if (isProduction) {
 			config.mode = "production";
 		} else {

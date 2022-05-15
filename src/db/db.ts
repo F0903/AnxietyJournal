@@ -4,6 +4,9 @@ import { DbDocument } from "./document";
 const dbUri = "mongodb://localhost:27017/";
 const defaultDbName = "AnxietyJournal";
 
+//TODO: PORT TO SQLITE
+// am tired of mongodb and webpacks bullshit
+
 class DB {
 	private mongo: MongoClient;
 
