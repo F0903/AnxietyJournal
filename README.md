@@ -3,7 +3,7 @@
 [![CI](https://github.com/F0903/AnxietyJournal/actions/workflows/main.yml/badge.svg)](https://github.com/F0903/AnxietyJournal/actions/workflows/main.yml)
 [![CodeQL](https://github.com/F0903/AnxietyJournal/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/F0903/AnxietyJournal/actions/workflows/codeql-analysis.yml)
 
-**NOTE: This project was made to learn Electron development without any external framework (such as React), but might be rewritten in such a framework at some point.**
+**NOTE: This project was made long ago to learn Electron development without any external framework (such as React), it will not be updated
 
 A simple tool for taking note of when you are anxious, or journaling anxiety-provoking events.
 
